@@ -10,8 +10,8 @@ import java.util.Map;
 public class RegisterRequest extends StringRequest {
 
     // 서버 URL
-    // 10.0.2.2
-    final static private String URL = "http://namweb.iptime.org/register.php";
+    //    final static private String URL = "http://10.0.2.2/register.php";
+    final static private String URL = "http://aa9334.cafe24.com/register.php";
     private Map<String, String> parameters;
 
     //생성자

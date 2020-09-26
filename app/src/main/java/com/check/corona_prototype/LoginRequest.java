@@ -10,9 +10,8 @@ import java.util.Map;
 public class LoginRequest extends StringRequest {
 
     // 서버 URL
-    // http://namweb.iptime.org
-    // 10.0.2.2
-    final static private String URL = "http://namweb.iptime.org/login.php";
+    //    final static private String URL = "http://10.0.2.2/login.php";
+    final static private String URL = "http://aa9334.cafe24.com/login.php";
     private Map<String, String> parameters;
 
     //생성자
