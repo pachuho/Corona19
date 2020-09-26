@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".FaceActivity">
+
+    <Button
+        android:id="@+id/btn_detect_face"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#B094E4"
+        android:text="얼굴 인식하기"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_alignParentBottom="true"/>
+
+    <com.wonderkiln.camerakit.CameraView
+        android:id="@+id/camera_view"
+        android:layout_above="@+id/btn_detect_face"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </com.wonderkiln.camerakit.CameraView>
+
+    <com.check.corona_prototype.FaceDetection.GraphicOverlay
+        android:id="@+id/graphic_overlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/camera_view" />
+
+</RelativeLayout>
