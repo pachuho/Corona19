@@ -3,12 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.check.corona_prototype">
 
-    <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-
-    <uses-feature android:name="android.hardware.camera" />
-    <uses-feature android:name="android.hardware.camera.autofocus" />
+    <uses-permission android:name="android.permission.CAMERA" />
 
     <application
         android:allowBackup="true"
@@ -18,20 +14,12 @@
         android:roundIcon="@mipmap/ic_launcher_cloud_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-
-
+        tools:ignore="GoogleAppIndexingWarning"
         android:usesCleartextTraffic="true">
-        <activity android:name="com.journeyapps.barcodescanner.CaptureActivity"
-            android:screenOrientation="fullSensor"
-            tools:replace="screenOrientation"/>
-        <activity android:name=".QR.ScanQR"/>
-        <activity android:name=".QR.CreateQR" />
-        <activity android:name=".FaceActivity" />
-<!--        android:configChanges="orientation|screenSize"-->
 
         <meta-data
             android:name="com.google.firebase.ml.vision.DEPENDENCIES"
-            android:value="face" /> <!-- To use multiple models: android:value="face,model2,model3" -->
+            android:value="face" />
         <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -39,8 +27,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name="com.journeyapps.barcodescanner.CaptureActivity"
+            android:screenOrientation="fullSensor"
+            tools:replace="screenOrientation"/>
+        <activity android:name=".QR.ScanQR"/>
+        <activity android:name=".QR.CreateQR" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".MainActivity" />
+        <activity android:name=".FaceDetection.FaceActivity" />
     </application>
 
 </manifest>

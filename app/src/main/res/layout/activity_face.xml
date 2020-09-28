@@ -1,33 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".FaceActivity">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    tools:context=".FaceDetection.FaceActivity">
 
-    <Button
-        android:id="@+id/btn_detect_face"
+    <Button android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/btn_detect"
+        android:text="Detect"/>
+
+    <com.camerakit.CameraKitView
+        android:layout_above="@id/btn_detect"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#B094E4"
-        android:text="얼굴 인식하기"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:layout_alignParentBottom="true"/>
-
-    <com.wonderkiln.camerakit.CameraView
         android:id="@+id/camera_view"
-        android:layout_above="@+id/btn_detect_face"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-    </com.wonderkiln.camerakit.CameraView>
+        android:layout_height="match_parent"
+        android:adjustViewBounds="true"
+        android:keepScreenOn="true"
+        app:camera_flash="auto"
+        app:camera_facing="back"
+        app:camera_focus="continuous"
+        app:camera_permissions="camera">
+
+    </com.camerakit.CameraKitView>
 
     <com.check.corona_prototype.FaceDetection.GraphicOverlay
         android:id="@+id/graphic_overlay"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@+id/camera_view" />
+        android:layout_width="match_parent" android:layout_height="match_parent"/>
 
 </RelativeLayout>
