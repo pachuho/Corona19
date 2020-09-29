@@ -2,10 +2,12 @@ package com.check.corona_prototype;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,8 +20,9 @@ import static com.check.corona_prototype.R.drawable.check_ok;
 // 로그인 완료, 메인
 public class MainActivity extends AppCompatActivity {
     TextView get_id;
+    String id, store;
     Button btn_picture, btn_qrcode;
-    String id;
+    int check_camera = 0, check_qr = 0;
     ImageView imageView1 = null, imageView2 = null;
 
 
@@ -38,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
         Bundle bundle = intent.getExtras();
         String name = bundle.getString("name");
         id = bundle.getString("id");
+        getIntent().getExtras().clear();
 
         get_id.setText(name + "님 안녕하세요.");
 
@@ -46,7 +50,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, FaceActivity.class);
-                startActivity(intent);
+                intent.putExtra("id", id);
+                startActivityForResult(intent, 1);
             }
         });
 
@@ -59,22 +64,41 @@ public class MainActivity extends AppCompatActivity {
                 startActivityForResult(intent, 2);
             }
         });
-
-
     }
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
         if (requestCode == 1){
             if (resultCode == RESULT_OK){
+                btn_picture.setEnabled(false);
+                check_camera = 1;
                 imageView1.setImageResource(check_ok);
             }
         } else if (requestCode == 2){
             if (resultCode == RESULT_OK){
+                btn_qrcode.setEnabled(false);
+                check_qr = 1;
                 imageView2.setImageResource(check_ok);
+
+
+//                해결 포인트 -> store 가져올 것
+//                Intent intent = getIntent();
+//                Bundle bundle = intent.getExtras();
+//                store = bundle.getString("store");
+//                Toast.makeText(getApplicationContext(), "Store : " + store, Toast.LENGTH_SHORT).show();
             }
         }
+        if (check_camera == 1 && check_qr == 1){
+            Toast.makeText(getApplicationContext(), "인증 완료", Toast.LENGTH_SHORT).show();
+            Handler delayHandler = new Handler();
+            delayHandler.postDelayed(new Runnable() {
+                @Override
+                public void run() {}
+            }, 1500);
+            Intent intent = new Intent(this, FinishActivity.class);
+            intent.putExtra("store", store);
+            startActivity(intent);
+            onDestroy();
+        }
     }
-
 }

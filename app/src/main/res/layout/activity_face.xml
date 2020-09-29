@@ -10,7 +10,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:id="@+id/btn_detect"
-        android:text="Detect"/>
+        android:text="얼굴 인식"/>
 
     <com.camerakit.CameraKitView
         android:layout_above="@id/btn_detect"
@@ -19,8 +19,8 @@
         android:layout_height="match_parent"
         android:adjustViewBounds="true"
         android:keepScreenOn="true"
-        app:camera_flash="auto"
-        app:camera_facing="back"
+        app:camera_flash="off"
+        app:camera_facing="front"
         app:camera_focus="continuous"
         app:camera_permissions="camera">
 

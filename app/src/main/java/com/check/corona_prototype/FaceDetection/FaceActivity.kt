@@ -1,8 +1,13 @@
 package com.check.corona_prototype.FaceDetection
 
+
+import android.app.Activity
+import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.os.Bundle
+import android.os.Handler
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.check.corona_prototype.R
@@ -13,7 +18,6 @@ import com.google.firebase.ml.vision.face.FirebaseVisionFaceDetectorOptions
 import kotlinx.android.synthetic.main.activity_face.*
 
 class FaceActivity : AppCompatActivity() {
-
     lateinit var alertDialog: AlertDialog
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,19 +29,21 @@ class FaceActivity : AppCompatActivity() {
                 .setCancelable(false)
                 .create();
 
-
         btn_detect.setOnClickListener {
             camera_view.captureImage { cameraKitView, byteArray ->
-                camera_view.onStop()
+
+//                camera_view.onStop()
                 alertDialog.show()
                 var bitmap = BitmapFactory.decodeByteArray(byteArray, 0, byteArray?.size ?: 0)
-                bitmap = Bitmap.createScaledBitmap(bitmap, camera_view?.width ?: 0, camera_view?.height ?: 0, false)
+                bitmap = Bitmap.createScaledBitmap(bitmap, camera_view?.width
+                        ?: 0, camera_view?.height ?: 0, false)
                 runDetector(bitmap)
             }
             graphic_overlay.clear()
         }
-
     }
+
+
 
     private fun runDetector(bitmap: Bitmap) {
         val image = FirebaseVisionImage.fromBitmap(bitmap)
@@ -64,6 +70,12 @@ class FaceActivity : AppCompatActivity() {
             graphic_overlay.add(rectOverLay)
         }
         alertDialog.dismiss()
+
+        Toast.makeText(this@FaceActivity, "얼굴인식 완료", Toast.LENGTH_SHORT).show()
+        Handler().postDelayed({}, 2500L)
+        val intent = Intent()
+        setResult(Activity.RESULT_OK, intent)
+        finish()
     }
 
     override fun onResume() {
@@ -90,6 +102,7 @@ class FaceActivity : AppCompatActivity() {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         camera_view.onRequestPermissionsResult(requestCode, permissions, grantResults)
     }
+
 
 
 }
