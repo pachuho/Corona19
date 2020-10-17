@@ -16,7 +16,7 @@ import org.json.JSONObject;
 // 회원가입 화면
 public class RegisterActivity extends AppCompatActivity {
     private EditText editName,editId,editPw,editAddress,editAge,editSex;
-    private Button btn_register, btn_idcheck;
+    private Button btn_register;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,16 +30,6 @@ public class RegisterActivity extends AppCompatActivity {
         editAge = findViewById(R.id.et_signup_age);
         editSex = findViewById(R.id.et_signup_sex);
         btn_register = findViewById(R.id.btn_sign_up_finish);
-//        btn_idcheck = (Button) findViewById(R.id.btn_sign_up_idcheck);
-//
-//        // 중복확인 버튼
-//        btn_idcheck.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Toast.makeText(RegisterActivity.this, "업데이트 예정", Toast.LENGTH_LONG).show();
-//            }
-//        });
-
 
         // 회원가입완료 버튼
         btn_register.setOnClickListener(new View.OnClickListener() {

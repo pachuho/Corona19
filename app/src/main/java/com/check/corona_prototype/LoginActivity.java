@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -18,21 +20,27 @@ import org.json.JSONObject;
 
 // 로그인화면
 public class LoginActivity extends AppCompatActivity {
-    private EditText editName, editPw;
+    private EditText editId, editPw;
+    private Button btn_signIn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        final EditText editId = (EditText) findViewById(R.id.et_id);
-        final EditText editPw = (EditText) findViewById(R.id.et_pw);
-        Button btn_signIn = findViewById(R.id.btn_sign_in);
+        editId = findViewById(R.id.et_id);
+        editPw = findViewById(R.id.et_pw);
+        btn_signIn = findViewById(R.id.btn_sign_in);
+
+        editId.addTextChangedListener(loginTextWatcher);
+        editPw.addTextChangedListener(loginTextWatcher);
+
         // 로그인 버튼
         btn_signIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String id = editId.getText().toString();
                 String pwd = editPw.getText().toString();
+
 
                 // 관리자 모드
                 if(id.equals("root")&& pwd.equals("1q2w3e4r"))
@@ -99,4 +107,24 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
+    private TextWatcher loginTextWatcher = new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+            String idInput = editId.getText().toString().trim();
+            String pwInput = editPw.getText().toString().trim();
+
+            btn_signIn.setEnabled(!idInput.isEmpty() && !pwInput.isEmpty());
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+
+        }
+    };
+
 }
