@@ -104,6 +104,7 @@ public class ScanQR extends AppCompatActivity {
                 intent.putExtra("store", store);
                 setResult(RESULT_OK, intent);
                 finish();
+
             }
         }
         else {

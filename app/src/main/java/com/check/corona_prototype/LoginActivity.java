@@ -61,8 +61,8 @@ public class LoginActivity extends AppCompatActivity {
                             boolean success = jsonObject.getBoolean("success");
                             if (success) { // 로그인 성공
 
-                                String id = jsonObject.getString("id");
                                 String name = jsonObject.getString("name");
+                                String id = jsonObject.getString("id");
                                 String pwd = jsonObject.getString("pwd");
 
                                 Toast.makeText(getApplicationContext(), "로그인 성공", Toast.LENGTH_SHORT).show();

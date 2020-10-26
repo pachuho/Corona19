@@ -1,4 +1,4 @@
-package com.check.corona_prototype;
+package com.check.corona_prototype.Fragment;
 
 import android.os.Bundle;
 
@@ -9,6 +9,8 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.check.corona_prototype.R;
 
 
 public class Fragment3 extends Fragment {
