@@ -21,6 +21,11 @@
             android:name="com.google.firebase.ml.vision.DEPENDENCIES"
             android:value="face" />
 
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyDXJye9dP-ywvuOCAsj_p8jRSIC4ouppSM"/>
+
+
         <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
