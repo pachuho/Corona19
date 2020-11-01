@@ -3,7 +3,6 @@ package com.check.corona_prototype;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,9 +10,9 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.check.corona_prototype.Fragment.Fragment1;
+import com.check.corona_prototype.Fragment.Authentication;
 import com.check.corona_prototype.Fragment.Fragment2;
-import com.check.corona_prototype.Fragment.Fragment3;
+import com.check.corona_prototype.Fragment.WebView;
 import com.check.corona_prototype.Fragment.Fragment4;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -26,9 +25,9 @@ public class MainActivity extends AppCompatActivity {
     private FragmentManager fm;
     private FragmentTransaction ft;
     private FragmentManager fragmentManager = getSupportFragmentManager();
-    private Fragment1 fragment1 = new Fragment1();
+    private Authentication fragment1 = new Authentication();
     private Fragment2 fragment2 = new Fragment2();
-    private Fragment3 fragment3 = new Fragment3();
+    private WebView webView = new WebView();
     private Fragment4 fragment4 = new Fragment4();
 
     @Override
@@ -43,7 +42,6 @@ public class MainActivity extends AppCompatActivity {
         id = bundle.getString("id");
         getIntent().getExtras().clear();
 
-        Toast.makeText(getApplicationContext(), "id:" + id, Toast.LENGTH_SHORT).show();
 
         // 바텀 네비게이션
         bottomNavigationView = findViewById(R.id.bottom_navigation_view);
@@ -96,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
                 break;
 
             case 2:
-                ft.replace(R.id.container, fragment3);
+                ft.replace(R.id.container, webView);
                 ft.commit();
                 break;
 
@@ -106,6 +104,7 @@ public class MainActivity extends AppCompatActivity {
                 break;
         }
     }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

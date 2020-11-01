@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
@@ -25,7 +24,7 @@ import com.check.corona_prototype.R;
 import static android.app.Activity.RESULT_OK;
 
 
-public class Fragment1 extends Fragment{
+public class Authentication extends Fragment{
     ViewGroup viewGroup;
     TextView name;
     String get_name, id, store;
@@ -36,7 +35,7 @@ public class Fragment1 extends Fragment{
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        viewGroup = (ViewGroup) inflater.inflate(R.layout.fragment_1, container, false);
+        viewGroup = (ViewGroup) inflater.inflate(R.layout.fragment_authentication, container, false);
         name = viewGroup.findViewById(R.id.get_name);
         context = container.getContext();
 
