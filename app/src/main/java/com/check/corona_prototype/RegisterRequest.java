@@ -16,7 +16,7 @@ public class RegisterRequest extends StringRequest {
 
     //생성자
     public RegisterRequest(String name, String id, String pwd,
-                           String address, int age, String sex,
+                           String address, int age, String sex, String manager,
                            Response.Listener<String> listener){
         super(Method.POST, URL, listener, null);
 
@@ -27,6 +27,7 @@ public class RegisterRequest extends StringRequest {
         parameters.put("address", address);
         parameters.put("age", age + "");
         parameters.put("sex", sex);
+        parameters.put("manager", manager);
     }
 
     @Override

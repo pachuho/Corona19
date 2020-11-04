@@ -3,10 +3,13 @@ package com.check.corona_prototype;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Spinner;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import com.android.volley.RequestQueue;
@@ -15,13 +18,22 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+
 // 회원가입 화면
 public class RegisterActivity extends AppCompatActivity {
     private EditText editName,editId,editPw,editAddress,editAge;
     private Button btn_register;
+
+    // 성별에 필요한 변수들
     private RadioGroup r_Sex;
     private RadioButton r_man, r_woman;
-    private String sex;
+
+    // 성별, 스피너를 담을 변수
+    private String sex, manager = "N";
+
+    ArrayList<String> arrayList;
+    ArrayAdapter<String> arrayAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,9 +47,13 @@ public class RegisterActivity extends AppCompatActivity {
         editAge = findViewById(R.id.et_signup_age);
         r_man = findViewById(R.id.r_man);
         r_woman = findViewById(R.id.r_woman);
-
         r_Sex = (RadioGroup) findViewById(R.id.r_sex);
 
+        // 스피너 변수
+        Spinner spinnerStore = findViewById(R.id.spinner_store);
+        btn_register = findViewById(R.id.btn_sign_up_finish);
+
+        // 성별 클릭시
         r_Sex.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener(){
             //라디오 버튼 상태 변경값을 감지한다.
             @Override
@@ -50,7 +66,28 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
 
-        btn_register = findViewById(R.id.btn_sign_up_finish);
+        // 매장 운영자
+        arrayList = new ArrayList<>();
+        arrayList.add("아니요");
+        arrayList.add("네");
+        arrayAdapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_spinner_dropdown_item, arrayList);
+
+        spinnerStore.setAdapter(arrayAdapter);
+        spinnerStore.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                if(arrayList.get(position) == "아니요") {
+                    manager = "N";
+                }
+                else {
+                    manager = "Y";
+                }
+                Toast.makeText(getApplicationContext(), manager, Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) { }
+        });
 
         // 회원가입완료 버튼
         btn_register.setOnClickListener(new View.OnClickListener() {
@@ -90,7 +127,7 @@ public class RegisterActivity extends AppCompatActivity {
                     }
                 };
                 // 서버로 요청
-                RegisterRequest registerRequest = new RegisterRequest(name, id, pwd, address, age, sex, responseListener);
+                RegisterRequest registerRequest = new RegisterRequest(name, id, pwd, address, age, sex, manager, responseListener);
                 RequestQueue queue = Volley.newRequestQueue(RegisterActivity.this);
                 queue.add(registerRequest);
             }

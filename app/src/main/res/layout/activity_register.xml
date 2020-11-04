@@ -172,6 +172,10 @@
                     android:layout_height="wrap_content"
                     android:textStyle="bold"
                     android:text="매장 관리자인가요?"/>
+                <Spinner
+                    android:id="@+id/spinner_store"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
 
                 <Button
                     android:id="@+id/btn_sign_up_finish"
