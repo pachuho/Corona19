@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
@@ -41,7 +42,10 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptor;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.Circle;
+import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -57,11 +61,14 @@ public class Fragment2 extends Fragment implements OnMapReadyCallback, ActivityC
 
     private GoogleMap mMap;
     private Marker currentMarker = null;
+    private Circle currentCircle = null;
 
     private static final String TAG = "googlemap_example";
     private static final int GPS_ENABLE_REQUEST_CODE = 2001;
-    private static final int UPDATE_INTERVAL_MS = 1000;  // 1초
-    private static final int FASTEST_UPDATE_INTERVAL_MS = 500; // 0.5초
+
+    private static final int FASTEST_UPDATE_INTERVAL_MS = 10000; // 10초
+
+    private static final int UPDATE_INTERVAL_MS = 10000;  // 10초
 
 
     // onRequestPermissionsResult에서 수신된 결과에서 ActivityCompat.requestPermissions를 사용한 퍼미션 요청을 구별하기 위해 사용됩니다.
@@ -139,18 +146,13 @@ public class Fragment2 extends Fragment implements OnMapReadyCallback, ActivityC
         setDefaultLocation();
 
         // 런타임 퍼미션 처리
-        // 1. 위치 퍼미션을 가지고 있는지 체크
+        // 위치 퍼미션을 가지고 있는지 체크
         int hasFineLocationPermission = ContextCompat.checkSelfPermission(context, Manifest.permission.ACCESS_FINE_LOCATION);
         int hasCoarseLocationPermission = ContextCompat.checkSelfPermission(context, Manifest.permission.ACCESS_COARSE_LOCATION);
 
         if (hasFineLocationPermission == PackageManager.PERMISSION_GRANTED && hasCoarseLocationPermission == PackageManager.PERMISSION_GRANTED) {
-
-            // 2. 이미 퍼미션을 가지고 있다면
-            // ( 안드로이드 6.0 이하 버전은 런타임 퍼미션이 필요없기 때문에 이미 허용된 걸로 인식합니다.)
-
-
-            startLocationUpdates(); // 3. 위치 업데이트 시작
-
+            // 갖고 있다면 위치 업데이트 시작
+            startLocationUpdates();
 
         }else {  //2. 퍼미션 요청을 허용한 적이 없다면 퍼미션 요청이 필요합니다. 2가지 경우(3-1, 4-1)가 있습니다.
 
@@ -174,15 +176,13 @@ public class Fragment2 extends Fragment implements OnMapReadyCallback, ActivityC
             } else {
                 // 4-1. 사용자가 퍼미션 거부를 한 적이 없는 경우에는 퍼미션 요청을 바로 합니다.
                 // 요청 결과는 onRequestPermissionResult에서 수신됩니다.
-                ActivityCompat.requestPermissions( getActivity(), REQUIRED_PERMISSIONS,
-                        PERMISSIONS_REQUEST_CODE);
+                ActivityCompat.requestPermissions( getActivity(), REQUIRED_PERMISSIONS, PERMISSIONS_REQUEST_CODE);
             }
 
         }
 
         mMap.getUiSettings().setMyLocationButtonEnabled(true);
-        // 현재 오동작을 해서 주석처리
-        mMap.animateCamera(CameraUpdateFactory.zoomTo(17));
+        mMap.animateCamera(CameraUpdateFactory.zoomTo(16));
         mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
 
             @Override
@@ -243,13 +243,13 @@ public class Fragment2 extends Fragment implements OnMapReadyCallback, ActivityC
 
     public void setDefaultLocation() {
 
-
         //디폴트 위치, Anyang
         LatLng DEFAULT_LOCATION = new LatLng(37.39178, 126.919805);
 
 
         if (currentMarker != null) currentMarker.remove();
-        CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(DEFAULT_LOCATION, 15);
+        if (currentCircle != null) currentCircle.remove();
+        CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(DEFAULT_LOCATION, 16); // 클수록 가까이
         mMap.moveCamera(cameraUpdate);
     }
 
@@ -262,38 +262,47 @@ public class Fragment2 extends Fragment implements OnMapReadyCallback, ActivityC
 
             if (locationList.size() > 0) {
                 location = locationList.get(locationList.size() - 1);
-                //location = locationList.get(0);
 
                 currentPosition = new LatLng(location.getLatitude(), location.getLongitude());
-
-//                String markerTitle =  getCurrentAddress(currentPosition);
-//                String markerSnippet = "위도:" + String.valueOf(location.getLatitude())
-//                        + " 경도:" + String.valueOf(location.getLongitude());
-
-                String my_location = "위도: " + String.valueOf(location.getLatitude())
+                String markerTitle =  getCurrentAddress(currentPosition);
+                String markerSnippet = "위도:" + String.valueOf(location.getLatitude())
                         + " 경도:" + String.valueOf(location.getLongitude());
 
-                Log.d(TAG, "onLocationResult : " + my_location);
+                Log.d(TAG, "onLocationResult : " + markerSnippet);
 
-
-//                현재 위치에 마커 생성하고 이동
-                setCurrentLocation(location);
+//              현재 위치에 마커 생성하고 이동
+                setCurrentLocation(location, markerTitle, markerSnippet);
 
                 mCurrentLocatiion = location;
             }
-
-
         }
-
     };
 
-    public void setCurrentLocation(Location location) {
+    public void setCurrentLocation(Location location, String markerTitle, String markerSnippet) {
 
 
         if (currentMarker != null) currentMarker.remove();
-
+        if (currentCircle != null) currentCircle.remove();
 
         LatLng currentLatLng = new LatLng(location.getLatitude(), location.getLongitude());
+
+        MarkerOptions markerOptions = new MarkerOptions();
+        markerOptions.position(currentLatLng);
+        markerOptions.title(markerTitle);
+        markerOptions.snippet(markerSnippet);
+        markerOptions.draggable(true);
+        markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE));
+
+        // 반경
+        CircleOptions circle1KM = new CircleOptions().center(currentLatLng) //원점
+                .radius(300)    //반지름 단위 : m
+                .strokeWidth(0f)  //선너비
+                .strokeColor(Color.parseColor("#2271cce7"))  //선색상
+                .fillColor(Color.parseColor("#2271cce7")); //배경색상
+
+
+        currentMarker = mMap.addMarker(markerOptions);
+        currentCircle = mMap.addCircle(circle1KM);
 
         CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLng(currentLatLng);
         mMap.moveCamera(cameraUpdate);
@@ -304,11 +313,9 @@ public class Fragment2 extends Fragment implements OnMapReadyCallback, ActivityC
 
         //지오코더... GPS를 주소로 변환
         Geocoder geocoder = new Geocoder(context, Locale.getDefault());
-
         List<Address> addresses;
 
         try {
-
             addresses = geocoder.getFromLocation(
                     latlng.latitude,
                     latlng.longitude,
@@ -347,8 +354,6 @@ public class Fragment2 extends Fragment implements OnMapReadyCallback, ActivityC
                     Manifest.permission.ACCESS_FINE_LOCATION);
             int hasCoarseLocationPermission = ContextCompat.checkSelfPermission(context,
                     Manifest.permission.ACCESS_COARSE_LOCATION);
-
-
 
             if (hasFineLocationPermission != PackageManager.PERMISSION_GRANTED ||
                     hasCoarseLocationPermission != PackageManager.PERMISSION_GRANTED   ) {
@@ -395,7 +400,7 @@ public class Fragment2 extends Fragment implements OnMapReadyCallback, ActivityC
         }
     }
 
-    //여기부터는 런타임 퍼미션 처리을 위한 메소드들
+    //런타임 퍼미션 처리을 위한 메소드
     private boolean checkPermission() {
 
         int hasFineLocationPermission = ContextCompat.checkSelfPermission(context,
