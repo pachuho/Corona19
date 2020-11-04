@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import com.android.volley.RequestQueue;
@@ -15,8 +17,11 @@ import org.json.JSONObject;
 
 // 회원가입 화면
 public class RegisterActivity extends AppCompatActivity {
-    private EditText editName,editId,editPw,editAddress,editAge,editSex;
+    private EditText editName,editId,editPw,editAddress,editAge;
     private Button btn_register;
+    private RadioGroup r_Sex;
+    private RadioButton r_man, r_woman;
+    private String sex;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +33,23 @@ public class RegisterActivity extends AppCompatActivity {
         editPw = findViewById(R.id.et_signup_pw);
         editAddress = findViewById(R.id.et_signup_address);
         editAge = findViewById(R.id.et_signup_age);
-        editSex = findViewById(R.id.et_signup_sex);
+        r_man = findViewById(R.id.r_man);
+        r_woman = findViewById(R.id.r_woman);
+
+        r_Sex = (RadioGroup) findViewById(R.id.r_sex);
+
+        r_Sex.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener(){
+            //라디오 버튼 상태 변경값을 감지한다.
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i){
+                if(i == R.id.r_man){
+                    sex = r_man.getText().toString();//라디오 버튼의 텍스트 값을 string에 담아준것
+                } else if(i == R.id.r_woman){
+                    sex = r_woman.getText().toString();//라디오 버튼의 텍스트 값을 string에 담아준것
+                }
+            }
+        });
+
         btn_register = findViewById(R.id.btn_sign_up_finish);
 
         // 회원가입완료 버튼
@@ -41,8 +62,6 @@ public class RegisterActivity extends AppCompatActivity {
                 String pwd = editPw.getText().toString();
                 String address = editAddress.getText().toString();
                 int age = Integer.parseInt(editAge.getText().toString());
-                String sex = editSex.getText().toString();
-
 
                 if (id.equals("") && pwd.equals(""))
                 {
