@@ -1,4 +1,4 @@
-package com.check.corona_prototype;
+package com.check.corona_prototype.Request;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Response;
@@ -16,7 +16,7 @@ public class RegisterRequest extends StringRequest {
 
     //생성자
     public RegisterRequest(String name, String id, String pwd,
-                           String address, int age, String sex, String manager,
+                           String address, int age, String sex, String manager, String corona,
                            Response.Listener<String> listener){
         super(Method.POST, URL, listener, null);
 
@@ -28,6 +28,7 @@ public class RegisterRequest extends StringRequest {
         parameters.put("age", age + "");
         parameters.put("sex", sex);
         parameters.put("manager", manager);
+        parameters.put("corona", corona);
     }
 
     @Override

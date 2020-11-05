@@ -28,8 +28,13 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Toast;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.toolbox.Volley;
+import com.check.corona_prototype.LoginActivity;
 import com.check.corona_prototype.MainActivity;
 import com.check.corona_prototype.R;
+import com.check.corona_prototype.Request.LoginRequest;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
@@ -52,9 +57,13 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 
 
 public class Fragment2 extends Fragment implements OnMapReadyCallback, ActivityCompat.OnRequestPermissionsResultCallback {
@@ -103,9 +112,10 @@ public class Fragment2 extends Fragment implements OnMapReadyCallback, ActivityC
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View layout = inflater.inflate(R.layout.fragment_2, container, false);
+        assert container != null;
         context = container.getContext();
 
-        getActivity().getWindow().setFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON,
+        Objects.requireNonNull(getActivity()).getWindow().setFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON,
                 WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
         mLayout = layout.findViewById(R.id.layout_main);
@@ -122,7 +132,7 @@ public class Fragment2 extends Fragment implements OnMapReadyCallback, ActivityC
 
         mFusedLocationClient = LocationServices.getFusedLocationProviderClient(context);
 
-        mapView = (MapView) layout.findViewById(R.id.map);
+        mapView = layout.findViewById(R.id.map);
         mapView.getMapAsync(this);
         return layout;
     }
@@ -141,6 +151,48 @@ public class Fragment2 extends Fragment implements OnMapReadyCallback, ActivityC
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
+
+        // 자~~ 아직 미완성입니다.
+//        Response.Listener<String> responseListener = new Response.Listener<String>() {
+//            @Override
+//            public void onResponse(String response) {
+//                try {
+//                    JSONObject jsonObject = new JSONObject(response);
+//                    boolean success = jsonObject.getBoolean("success");
+//                    if (success) { // 확진자 통신 성공
+//
+//                        String time = jsonObject.getString("time");
+//                        String la = jsonObject.getString("la");
+//                        String lo = jsonObject.getString("lo");
+//                        String store = jsonObject.getString("store");
+//
+//
+//                        Toast.makeText(context, "지도 성공", Toast.LENGTH_SHORT).show();
+//
+//                    } else { // 로그인 실패
+//                        Toast.makeText(context, "지도 실패", Toast.LENGTH_SHORT).show();
+//                    }
+//                } catch (JSONException e) {
+//                    e.printStackTrace();
+//                    Toast.makeText(context, "지도 실패, 통신이상", Toast.LENGTH_SHORT).show();
+//                }
+//            }
+//        };
+//        LocationRequest locationRequest = new LocationRequest(responseListener);
+//        RequestQueue queue = Volley.newRequestQueue(context);
+//        queue.add(locationRequest);
+//
+//
+//
+//        // 코로나 확진자 마커 추가
+//        for (int i = 0; i < 10; i++) {
+//            MarkerOptions makerOptions = new MarkerOptions();
+//            makerOptions.position(new LatLng(37.52487 + i, 126.92723));
+//            makerOptions.title("마커" + i);
+//            mMap.addMarker(makerOptions);
+//        }
+        ///////////여기까지
+
         // 런타임 퍼미션 요청 대화상자나 GPS 활성 요청 대화상자 보이기전에
         // 지도의 초기위치를 안양으로 이동
         setDefaultLocation();
@@ -157,7 +209,7 @@ public class Fragment2 extends Fragment implements OnMapReadyCallback, ActivityC
         }else {  //2. 퍼미션 요청을 허용한 적이 없다면 퍼미션 요청이 필요합니다. 2가지 경우(3-1, 4-1)가 있습니다.
 
             // 3-1. 사용자가 퍼미션 거부를 한 적이 있는 경우에는
-            if (ActivityCompat.shouldShowRequestPermissionRationale(getActivity(), REQUIRED_PERMISSIONS[0])) {
+            if (ActivityCompat.shouldShowRequestPermissionRationale(Objects.requireNonNull(getActivity()), REQUIRED_PERMISSIONS[0])) {
 
                 // 3-2. 요청을 진행하기 전에 사용자가에게 퍼미션이 필요한 이유를 설명해줄 필요가 있습니다.
                 Snackbar.make(mLayout, "이 앱을 실행하려면 위치 접근 권한이 필요합니다.",
@@ -167,7 +219,7 @@ public class Fragment2 extends Fragment implements OnMapReadyCallback, ActivityC
                     public void onClick(View view) {
 
                         // 3-3. 사용자게에 퍼미션 요청을 합니다. 요청 결과는 onRequestPermissionResult에서 수신됩니다.
-                        ActivityCompat.requestPermissions( getActivity(), REQUIRED_PERMISSIONS,
+                        ActivityCompat.requestPermissions(Objects.requireNonNull(getActivity()), REQUIRED_PERMISSIONS,
                                 PERMISSIONS_REQUEST_CODE);
                     }
                 }).show();
@@ -197,48 +249,6 @@ public class Fragment2 extends Fragment implements OnMapReadyCallback, ActivityC
         } else {
             checkLocationPermissionWithRationale();
         }
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        mapView.onStart();
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        mapView.onStop();
-    }
-
-    @Override
-    public void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        mapView.onSaveInstanceState(outState);
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        mapView.onResume();
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        mapView.onPause();
-    }
-
-    @Override
-    public void onLowMemory() {
-        super.onLowMemory();
-        mapView.onLowMemory();
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        mapView.onLowMemory();
     }
 
     public void setDefaultLocation() {
@@ -307,6 +317,48 @@ public class Fragment2 extends Fragment implements OnMapReadyCallback, ActivityC
         CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLng(currentLatLng);
         mMap.moveCamera(cameraUpdate);
 
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        mapView.onStart();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        mapView.onStop();
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        mapView.onSaveInstanceState(outState);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        mapView.onResume();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        mapView.onPause();
+    }
+
+    @Override
+    public void onLowMemory() {
+        super.onLowMemory();
+        mapView.onLowMemory();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        mapView.onLowMemory();
     }
 
     public String getCurrentAddress(LatLng latlng) {

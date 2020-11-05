@@ -3,6 +3,7 @@ package com.check.corona_prototype;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -41,7 +42,6 @@ public class MainActivity extends AppCompatActivity {
         name = bundle.getString("name");
         id = bundle.getString("id");
         getIntent().getExtras().clear();
-
 
         // 바텀 네비게이션
         bottomNavigationView = findViewById(R.id.bottom_navigation_view);

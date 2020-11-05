@@ -12,13 +12,9 @@ import java.util.Date;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
-import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.check.corona_prototype.LoginActivity;
-import com.check.corona_prototype.LoginRequest;
 import com.check.corona_prototype.MainActivity;
 import com.check.corona_prototype.R;
-import com.google.zxing.client.android.Intents;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 

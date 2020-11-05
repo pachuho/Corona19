@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
+import com.check.corona_prototype.Request.LoginRequest;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -47,9 +48,10 @@ public class LoginActivity extends AppCompatActivity {
                 {
                     Toast.makeText(getApplicationContext(), "관리자 모드 진입", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                    intent.putExtra("name", "테스터");
                     intent.putExtra("id", id);
-                    intent.putExtra("name", "관리자");
                     intent.putExtra("pwd", pwd);
+                    intent.putExtra("manager", "N");
                     startActivity(intent);
                     return;
                }
@@ -64,22 +66,23 @@ public class LoginActivity extends AppCompatActivity {
                                 String name = jsonObject.getString("name");
                                 String id = jsonObject.getString("id");
                                 String pwd = jsonObject.getString("pwd");
+                                String manager = jsonObject.getString("manager");
 
                                 Toast.makeText(getApplicationContext(), "로그인 성공", Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
 
-                                intent.putExtra("id", id);
                                 intent.putExtra("name", name);
+                                intent.putExtra("id", id);
                                 intent.putExtra("pwd", pwd);
-
-
+                                intent.putExtra("manager", manager);
                                 startActivity(intent);
+
                             } else { // 로그인 실패
                                 Toast.makeText(getApplicationContext(), "로그인 실패", Toast.LENGTH_SHORT).show();
-                                return;
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
+                            Toast.makeText(getApplicationContext(), "로그인 실패, 통신이상", Toast.LENGTH_SHORT).show();
                         }
                     }
                 };

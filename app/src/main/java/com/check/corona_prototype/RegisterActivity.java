@@ -12,6 +12,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
+import com.check.corona_prototype.Request.RegisterRequest;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -24,8 +26,8 @@ public class RegisterActivity extends AppCompatActivity {
     private RadioGroup r_Sex, r_Manager;
     private RadioButton r_man, r_woman, r_no, r_yes;
 
-    // 성별, 매니저를 담을 변수
-    private String sex = "남성", manager = "N";
+    // 성별, 매니저, 코로나 여부를 담을 변수
+    private String sex = "남성", manager = "N", corona = "N";
 
 
 
@@ -110,7 +112,7 @@ public class RegisterActivity extends AppCompatActivity {
                     }
                 };
                 // 서버로 요청
-                RegisterRequest registerRequest = new RegisterRequest(name, id, pwd, address, age, sex, manager, responseListener);
+                RegisterRequest registerRequest = new RegisterRequest(name, id, pwd, address, age, sex, manager, corona, responseListener);
                 RequestQueue queue = Volley.newRequestQueue(RegisterActivity.this);
                 queue.add(registerRequest);
             }
