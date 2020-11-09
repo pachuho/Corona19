@@ -2,6 +2,7 @@ package com.check.corona_prototype.Fragment;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -11,6 +12,8 @@ import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationManager;
+import android.nfc.Tag;
+import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -28,6 +31,7 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.Toast;
 
+import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
@@ -57,10 +61,20 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
@@ -88,20 +102,18 @@ public class Fragment2 extends Fragment implements OnMapReadyCallback, ActivityC
     // 앱을 실행하기 위해 필요한 퍼미션을 정의합니다.
     String[] REQUIRED_PERMISSIONS = {Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION};  // 외부 저장소
 
-
     Location mCurrentLocatiion;
     LatLng currentPosition;
-
 
     private FusedLocationProviderClient mFusedLocationClient;
     private LocationRequest locationRequest;
     private Location location;
 
-
     private View mLayout;  // Snackbar 사용하기 위한 View
 
     private MapView mapView = null;
-    private Context context;
+    private Context context; // 프래그먼트 통신
+    private String mJsonString; // Json 통신
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -134,6 +146,7 @@ public class Fragment2 extends Fragment implements OnMapReadyCallback, ActivityC
 
         mapView = layout.findViewById(R.id.map);
         mapView.getMapAsync(this);
+
         return layout;
     }
 
@@ -147,51 +160,11 @@ public class Fragment2 extends Fragment implements OnMapReadyCallback, ActivityC
         }
     }
 
+
+
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-
-
-        // 자~~ 아직 미완성입니다.
-//        Response.Listener<String> responseListener = new Response.Listener<String>() {
-//            @Override
-//            public void onResponse(String response) {
-//                try {
-//                    JSONObject jsonObject = new JSONObject(response);
-//                    boolean success = jsonObject.getBoolean("success");
-//                    if (success) { // 확진자 통신 성공
-//
-//                        String time = jsonObject.getString("time");
-//                        String la = jsonObject.getString("la");
-//                        String lo = jsonObject.getString("lo");
-//                        String store = jsonObject.getString("store");
-//
-//
-//                        Toast.makeText(context, "지도 성공", Toast.LENGTH_SHORT).show();
-//
-//                    } else { // 로그인 실패
-//                        Toast.makeText(context, "지도 실패", Toast.LENGTH_SHORT).show();
-//                    }
-//                } catch (JSONException e) {
-//                    e.printStackTrace();
-//                    Toast.makeText(context, "지도 실패, 통신이상", Toast.LENGTH_SHORT).show();
-//                }
-//            }
-//        };
-//        LocationRequest locationRequest = new LocationRequest(responseListener);
-//        RequestQueue queue = Volley.newRequestQueue(context);
-//        queue.add(locationRequest);
-//
-//
-//
-//        // 코로나 확진자 마커 추가
-//        for (int i = 0; i < 10; i++) {
-//            MarkerOptions makerOptions = new MarkerOptions();
-//            makerOptions.position(new LatLng(37.52487 + i, 126.92723));
-//            makerOptions.title("마커" + i);
-//            mMap.addMarker(makerOptions);
-//        }
-        ///////////여기까지
 
         // 런타임 퍼미션 요청 대화상자나 GPS 활성 요청 대화상자 보이기전에
         // 지도의 초기위치를 안양으로 이동
@@ -263,6 +236,7 @@ public class Fragment2 extends Fragment implements OnMapReadyCallback, ActivityC
         mMap.moveCamera(cameraUpdate);
     }
 
+    // 반복되는 부분
     LocationCallback locationCallback = new LocationCallback() {
         @Override
         public void onLocationResult(LocationResult locationResult) {
@@ -285,7 +259,10 @@ public class Fragment2 extends Fragment implements OnMapReadyCallback, ActivityC
 
                 mCurrentLocatiion = location;
             }
+            GetData task = new GetData();
+            task.execute( "http://aa9334.cafe24.com/location.php", "");
         }
+
     };
 
     public void setCurrentLocation(Location location, String markerTitle, String markerSnippet) {
@@ -359,6 +336,162 @@ public class Fragment2 extends Fragment implements OnMapReadyCallback, ActivityC
     public void onDestroy() {
         super.onDestroy();
         mapView.onLowMemory();
+    }
+
+    // 통신
+    private class GetData extends AsyncTask<String, Void, String> {
+
+        ProgressDialog progressDialog;
+        String errorString = null;
+
+        @Override
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
+
+
+            if (result == null){
+                Log.d(TAG, "Error" + errorString);
+            }
+            else {
+                mJsonString = result;
+                showResult();
+            }
+        }
+
+        private void showResult(){
+
+            String TAG_JSON="location";
+            String TAG_ID = "id";
+            String TAG_TIME = "time";
+            String TAG_LA ="la";
+            String TAG_LO ="lo";
+            String TAG_STORE ="store";
+
+
+            try {
+                JSONObject jsonObject = new JSONObject(mJsonString);
+                JSONArray jsonArray = jsonObject.getJSONArray(TAG_JSON);
+
+                for(int i=0;i<jsonArray.length();i++){
+
+                    JSONObject item = jsonArray.getJSONObject(i);
+
+                    String id = item.getString(TAG_ID);
+                    String time = item.getString(TAG_TIME);
+                    Double la = Double.parseDouble(item.getString(TAG_LA));
+                    Double lo = Double.parseDouble(item.getString(TAG_LO));
+                    String store = item.getString(TAG_STORE);
+
+                    Log.d(TAG, "showResult : " + id + time + la + lo + store +"\n");
+
+                    // 코로나 확진자 마커 추가
+                    MarkerOptions makerOptions = new MarkerOptions();
+                    makerOptions.position(new LatLng(la, lo));
+                    makerOptions.title(store);
+                    makerOptions.snippet(time);
+
+                    // 현재 날짜,시간
+                    Date curDate = new Date();
+                    SimpleDateFormat dateFormat = new SimpleDateFormat("YYYY-MM-dd HH:mm:ss");
+
+                    //요청시간을 Date로 parsing 후 time 가져오기
+                    Date reqDate = dateFormat.parse(time);
+                    long reqDatetime = reqDate.getTime();
+
+                    //현재시간을 요청시간의 형태로 format 후 time 가져오기
+                    curDate = dateFormat.parse(dateFormat.format(curDate));
+                    long curDateTime = curDate.getTime();
+
+                    // 일자 비교
+                    long calDate = curDateTime - reqDatetime;
+                    long calDateDays = calDate / (24*60*60*1000);
+                    if (calDateDays > 0) {
+                        makerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW));
+                    } else {
+                        // 시간 비교
+                        long hour = (curDateTime - reqDatetime) / (60*60*1000);
+                        Log.d(TAG, "curDateTime :" + curDateTime + "\n");
+                        Log.d(TAG, "reqDateTime :" + reqDatetime + "\n");
+                        Log.d(TAG, "diffTime : " + hour + "\n");
+                        if (hour >= 12){makerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE));}
+                        else if (hour >= 6){makerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));}
+                    }
+
+                    mMap.addMarker(makerOptions);
+
+                }
+
+
+
+            } catch (JSONException | ParseException e) {
+
+                Log.d(TAG, "showResult : ", e);
+            }
+
+        }
+
+        @Override
+        protected String doInBackground(String... params) {
+
+            String serverURL = params[0];
+            String postParameters = params[1];
+
+
+            try {
+
+                URL url = new URL(serverURL);
+                HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+
+
+                httpURLConnection.setReadTimeout(5000);
+                httpURLConnection.setConnectTimeout(5000);
+                httpURLConnection.setRequestMethod("POST");
+                httpURLConnection.setDoInput(true);
+                httpURLConnection.connect();
+
+
+                OutputStream outputStream = httpURLConnection.getOutputStream();
+                outputStream.write(postParameters.getBytes("UTF-8"));
+                outputStream.flush();
+                outputStream.close();
+
+
+                int responseStatusCode = httpURLConnection.getResponseCode();
+//                Log.d(TAG, "response code - " + responseStatusCode);
+
+                InputStream inputStream;
+                if(responseStatusCode == HttpURLConnection.HTTP_OK) {
+                    inputStream = httpURLConnection.getInputStream();
+                }
+                else{
+                    inputStream = httpURLConnection.getErrorStream();
+                }
+
+
+                InputStreamReader inputStreamReader = new InputStreamReader(inputStream, "UTF-8");
+                BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+
+                StringBuilder sb = new StringBuilder();
+                String line;
+
+                while((line = bufferedReader.readLine()) != null){
+                    sb.append(line);
+                }
+
+                bufferedReader.close();
+
+                return sb.toString().trim();
+
+
+            } catch (Exception e) {
+
+                Log.d(TAG, "GetData : Error ", e);
+                errorString = e.toString();
+
+                return null;
+            }
+
+        }
     }
 
     public String getCurrentAddress(LatLng latlng) {

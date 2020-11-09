@@ -46,7 +46,7 @@ public class LoginActivity extends AppCompatActivity {
                 // 관리자 모드
                 if(id.equals("root")&& pwd.equals("1q2w3e4r"))
                 {
-                    Toast.makeText(getApplicationContext(), "관리자 모드 진입", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(getApplicationContext(), "관리자 모드 진입", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                     intent.putExtra("name", "테스터");
                     intent.putExtra("id", id);
@@ -68,7 +68,7 @@ public class LoginActivity extends AppCompatActivity {
                                 String pwd = jsonObject.getString("pwd");
                                 String manager = jsonObject.getString("manager");
 
-                                Toast.makeText(getApplicationContext(), "로그인 성공", Toast.LENGTH_SHORT).show();
+//                                Toast.makeText(getApplicationContext(), "로그인 성공", Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
 
                                 intent.putExtra("name", name);
