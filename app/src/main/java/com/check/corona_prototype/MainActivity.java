@@ -13,7 +13,7 @@ import androidx.fragment.app.FragmentTransaction;
 import com.check.corona_prototype.Fragment.Authentication;
 import com.check.corona_prototype.Fragment.CoronaMap;
 import com.check.corona_prototype.Fragment.WebView;
-import com.check.corona_prototype.Fragment.Fragment4;
+import com.check.corona_prototype.Fragment.Setting;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 // 로그인 완료, 메인
@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
     private Authentication fragment1 = new Authentication();
     private CoronaMap location = new CoronaMap();
     private WebView webView = new WebView();
-    private Fragment4 fragment4 = new Fragment4();
+    private Setting setting = new Setting();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,8 +98,12 @@ public class MainActivity extends AppCompatActivity {
                 break;
 
             case 3:
-                ft.replace(R.id.container, fragment4);
+                ft.replace(R.id.container, setting);
                 ft.commit();
+
+                Bundle bundle2 = new Bundle();
+                bundle2.putString("id", id);
+                setting.setArguments(bundle2);
                 break;
         }
     }
