@@ -3,7 +3,6 @@ package com.check.corona_prototype;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,7 +11,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.check.corona_prototype.Fragment.Authentication;
-import com.check.corona_prototype.Fragment.Fragment2;
+import com.check.corona_prototype.Fragment.CoronaMap;
 import com.check.corona_prototype.Fragment.WebView;
 import com.check.corona_prototype.Fragment.Fragment4;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -27,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
     private FragmentTransaction ft;
     private FragmentManager fragmentManager = getSupportFragmentManager();
     private Authentication fragment1 = new Authentication();
-    private Fragment2 fragment2 = new Fragment2();
+    private CoronaMap location = new CoronaMap();
     private WebView webView = new WebView();
     private Fragment4 fragment4 = new Fragment4();
 
@@ -89,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
                 break;
 
             case 1:
-                ft.replace(R.id.container, fragment2);
+                ft.replace(R.id.container, location);
                 ft.commit();
                 break;
 

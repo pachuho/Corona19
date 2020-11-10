@@ -72,6 +72,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.sql.Time;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -80,13 +81,13 @@ import java.util.Locale;
 import java.util.Objects;
 
 
-public class Fragment2 extends Fragment implements OnMapReadyCallback, ActivityCompat.OnRequestPermissionsResultCallback {
+public class CoronaMap extends Fragment implements OnMapReadyCallback, ActivityCompat.OnRequestPermissionsResultCallback {
 
-    private GoogleMap mMap;
+    private com.google.android.gms.maps.GoogleMap mMap;
     private Marker currentMarker = null;
     private Circle currentCircle = null;
 
-    private static final String TAG = "googlemap_example";
+    private static final String TAG = "corona_location";
     private static final int GPS_ENABLE_REQUEST_CODE = 2001;
 
     private static final int FASTEST_UPDATE_INTERVAL_MS = 10000; // 10초
@@ -102,12 +103,12 @@ public class Fragment2 extends Fragment implements OnMapReadyCallback, ActivityC
     // 앱을 실행하기 위해 필요한 퍼미션을 정의합니다.
     String[] REQUIRED_PERMISSIONS = {Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION};  // 외부 저장소
 
-    Location mCurrentLocatiion;
+    android.location.Location mCurrentLocatiion;
     LatLng currentPosition;
 
     private FusedLocationProviderClient mFusedLocationClient;
     private LocationRequest locationRequest;
-    private Location location;
+    private android.location.Location location;
 
     private View mLayout;  // Snackbar 사용하기 위한 View
 
@@ -163,7 +164,7 @@ public class Fragment2 extends Fragment implements OnMapReadyCallback, ActivityC
 
 
     @Override
-    public void onMapReady(GoogleMap googleMap) {
+    public void onMapReady(com.google.android.gms.maps.GoogleMap googleMap) {
         mMap = googleMap;
 
         // 런타임 퍼미션 요청 대화상자나 GPS 활성 요청 대화상자 보이기전에
@@ -208,7 +209,7 @@ public class Fragment2 extends Fragment implements OnMapReadyCallback, ActivityC
 
         mMap.getUiSettings().setMyLocationButtonEnabled(true);
         mMap.animateCamera(CameraUpdateFactory.zoomTo(16));
-        mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
+        mMap.setOnMapClickListener(new com.google.android.gms.maps.GoogleMap.OnMapClickListener() {
 
             @Override
             public void onMapClick(LatLng latLng) {
@@ -242,7 +243,7 @@ public class Fragment2 extends Fragment implements OnMapReadyCallback, ActivityC
         public void onLocationResult(LocationResult locationResult) {
             super.onLocationResult(locationResult);
 
-            List<Location> locationList = locationResult.getLocations();
+            List<android.location.Location> locationList = locationResult.getLocations();
 
             if (locationList.size() > 0) {
                 location = locationList.get(locationList.size() - 1);
@@ -265,7 +266,7 @@ public class Fragment2 extends Fragment implements OnMapReadyCallback, ActivityC
 
     };
 
-    public void setCurrentLocation(Location location, String markerTitle, String markerSnippet) {
+    public void setCurrentLocation(android.location.Location location, String markerTitle, String markerSnippet) {
 
 
         if (currentMarker != null) currentMarker.remove();
@@ -382,7 +383,7 @@ public class Fragment2 extends Fragment implements OnMapReadyCallback, ActivityC
                     Double lo = Double.parseDouble(item.getString(TAG_LO));
                     String store = item.getString(TAG_STORE);
 
-                    Log.d(TAG, "showResult : " + id + time + la + lo + store +"\n");
+                    Log.d(TAG, "showResult : " + id + "/" + time + "/" + la + "/" + lo + "/" + store +"\n");
 
                     // 코로나 확진자 마커 추가
                     MarkerOptions makerOptions = new MarkerOptions();
@@ -390,33 +391,31 @@ public class Fragment2 extends Fragment implements OnMapReadyCallback, ActivityC
                     makerOptions.title(store);
                     makerOptions.snippet(time);
 
+                    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.KOREA);
+
                     // 현재 날짜,시간
-                    Date curDate = new Date();
-                    SimpleDateFormat dateFormat = new SimpleDateFormat("YYYY-MM-dd HH:mm:ss");
-
-                    //요청시간을 Date로 parsing 후 time 가져오기
-                    Date reqDate = dateFormat.parse(time);
-                    long reqDatetime = reqDate.getTime();
-
-                    //현재시간을 요청시간의 형태로 format 후 time 가져오기
-                    curDate = dateFormat.parse(dateFormat.format(curDate));
+                    long now = System.currentTimeMillis();
+                    Date curDate = new Date(now);
+                    Log.d(TAG, "현재 시간 :" + curDate + "\n");
                     long curDateTime = curDate.getTime();
 
-                    // 일자 비교
-                    long calDate = curDateTime - reqDatetime;
-                    long calDateDays = calDate / (24*60*60*1000);
-                    if (calDateDays > 0) {
-                        makerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW));
-                    } else {
-                        // 시간 비교
-                        long hour = (curDateTime - reqDatetime) / (60*60*1000);
-                        Log.d(TAG, "curDateTime :" + curDateTime + "\n");
-                        Log.d(TAG, "reqDateTime :" + reqDatetime + "\n");
-                        Log.d(TAG, "diffTime : " + hour + "\n");
-                        if (hour >= 12){makerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE));}
-                        else if (hour >= 6){makerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));}
-                    }
+                    //요청시간
+                    Date reqDate = dateFormat.parse(time);
+                    Log.d(TAG, "입력받은 시간 :" + reqDate + "\n");
+                    long reqDatetime = reqDate.getTime();
 
+                    // 시간 비교  / 24시간 이상 -> 노랑, 6시간 이상 -> 주황, 6시간 이내 빨강
+                    long diffHours = (curDateTime - reqDatetime) / (1000*60*60); // 밀리초 -> 초 -> 분
+                    if (diffHours >= 24) {
+                        makerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW));
+                    } else if (diffHours >= 6) {
+                        makerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE));
+                    } else {
+                        makerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
+                    }
+                    Log.d(TAG, "curDateTime :" + curDateTime + "\n");
+                    Log.d(TAG, "reqDateTime :" + reqDatetime + "\n");
+                    Log.d(TAG, "diffHours : " + diffHours + "\n");
                     mMap.addMarker(makerOptions);
 
                 }
