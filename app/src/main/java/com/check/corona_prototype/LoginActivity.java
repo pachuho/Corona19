@@ -15,6 +15,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
 import com.check.corona_prototype.Manger.ManagerActivity;
+import com.check.corona_prototype.Problem.FindActivity;
 import com.check.corona_prototype.Request.LoginRequest;
 
 import org.json.JSONException;
@@ -113,7 +114,8 @@ public class LoginActivity extends AppCompatActivity {
         findViewById(R.id.btn_forgot).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(LoginActivity.this, "업데이트 예정", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(LoginActivity.this, FindActivity.class);
+                startActivity(intent);
             }
         });
 

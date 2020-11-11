@@ -2,6 +2,8 @@ package com.check.corona_prototype;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -12,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
+import com.check.corona_prototype.Request.IdCheckRequest;
 import com.check.corona_prototype.Request.RegisterRequest;
 
 import org.json.JSONException;
@@ -20,16 +23,14 @@ import org.json.JSONObject;
 // 회원가입 화면
 public class RegisterActivity extends AppCompatActivity {
     private EditText editName,editId,editPw,editAddress,editAge;
-    private Button btn_register;
+    private Button btn_register, btn_idCheck;
 
     // 성별, 매니저에 필요한 변수들
     private RadioGroup r_Sex, r_Manager;
     private RadioButton r_man, r_woman, r_no, r_yes;
 
     // 성별, 매니저, 코로나 여부를 담을 변수
-    private String sex = "남성", manager = "N", corona = "N";
-
-
+    private String id, sex = "남성", manager = "N", corona = "N";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,8 +49,49 @@ public class RegisterActivity extends AppCompatActivity {
         r_no = findViewById(R.id.r_no);
         r_yes = findViewById(R.id.r_yes);
         btn_register = findViewById(R.id.btn_sign_up_finish);
+        btn_idCheck = findViewById(R.id.btn_idCheck);
 
-        // 성별 클릭시
+        // 버튼 활성화 변수
+        editName.addTextChangedListener(registerTextWatcher);
+        editId.addTextChangedListener(registerTextWatcher);
+        editPw.addTextChangedListener(registerTextWatcher);
+        editAddress.addTextChangedListener(registerTextWatcher);
+        editAge.addTextChangedListener(registerTextWatcher);
+
+        // 아이디 중복 클릭 시
+        btn_idCheck.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                id = editId.getText().toString();
+                if (id.equals(""))
+                {
+                    Toast.makeText(getApplicationContext(), "아이디를 입력하세요", Toast.LENGTH_SHORT).show();
+                }
+                Response.Listener<String> responseListener = new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONObject jsonObject = new JSONObject(response);
+                            boolean success = jsonObject.getBoolean("success");
+                            if (success) { // 중복 아이디가 있을 경우
+//                                Toast.makeText(getApplicationContext(), "아이디가 있습니다.", Toast.LENGTH_SHORT).show();
+                            } else { // 중복 아이디가 없을 경우
+
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            Toast.makeText(getApplicationContext(), "중복확인 실패, 통신 이상", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                };
+                // 서버로 요청
+                IdCheckRequest idCheckRequest = new IdCheckRequest(id, responseListener);
+                RequestQueue queue = Volley.newRequestQueue(RegisterActivity.this);
+                queue.add(idCheckRequest);
+            }
+        });
+
+        // 성별 클릭 시
         r_Sex.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener(){
             //라디오 버튼 상태 변경값을 감지한다.
             @Override
@@ -62,7 +104,7 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
 
-        // 매장 관리자 클릭시
+        // 매장 관리자 클릭 시
         r_Manager.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener(){
             //라디오 버튼 상태 변경값을 감지한다.
             @Override
@@ -81,7 +123,7 @@ public class RegisterActivity extends AppCompatActivity {
             public void onClick(View v) {
                 // 입력값 가져오기
                 String name = editName.getText().toString();
-                String id = editId.getText().toString();
+                id = editId.getText().toString();
                 String pwd = editPw.getText().toString();
                 String address = editAddress.getText().toString();
                 int age = Integer.parseInt(editAge.getText().toString());
@@ -118,5 +160,29 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
     }
+    private TextWatcher registerTextWatcher = new TextWatcher() {
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+            String nameInput = editName.getText().toString().trim();
+            String idInput = editId.getText().toString().trim();
+            String pwInput = editPw.getText().toString().trim();
+            String addressInput = editAddress.getText().toString().trim();
+            String ageInput = editAge.getText().toString().trim();
+
+            btn_register.setEnabled(!nameInput.isEmpty() && !idInput.isEmpty() && !pwInput.isEmpty()
+                    && !addressInput.isEmpty() && !ageInput.isEmpty());
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+
+        }
+    };
+
 
 }

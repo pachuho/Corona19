@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Problem.FindActivity"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:textSize="20sp"
+            android:layout_marginLeft="25dp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:text="로그인에 문제가 있나요?"/>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/black"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="9"
+        android:orientation="vertical"
+        android:layout_margin="25dp">
+
+        <RadioGroup
+            android:id="@+id/r_problemCheck"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp"
+            android:checkedButton="@+id/r_problemId">
+
+            <RadioButton
+                android:id="@+id/r_problemId"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="아이디를 잊어버렸습니다."
+                android:textSize="15sp" />
+
+            <RadioButton
+                android:id="@+id/r_ProblemPwd"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="비밀번호를 잊어버렸습니다."
+                android:textSize="15sp" />
+
+            <RadioButton
+                android:id="@+id/r_ProblemEtc"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="기타 문제가 있습니다."
+                android:textSize="15sp" />
+        </RadioGroup>
+
+        <Button
+            android:id="@+id/btn_find"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="계속"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -18,6 +18,10 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".Problem.ProblemEtcActivity"></activity>
+        <activity android:name=".Problem.ProblemPwdActivity" />
+        <activity android:name=".Problem.ProblemIdActivity" />
+        <activity android:name=".Problem.FindActivity" />
         <activity android:name=".Manger.ManagerActivity" />
 
         <meta-data

@@ -58,21 +58,44 @@
                 android:text="아이디"
                 android:textStyle="bold" />
 
-            <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:boxBackgroundMode="outline"
-                app:counterEnabled="true"
-                app:counterMaxLength="10">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/et_signup_id"
-                    android:layout_width="match_parent"
+                android:orientation="horizontal">
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="0dp"
+                    android:layout_weight="7.5"
                     android:layout_height="wrap_content"
-                    android:maxLength="10"
-                    android:textSize="15sp" />
-            </com.google.android.material.textfield.TextInputLayout>
+                    app:boxBackgroundMode="outline"
+                    app:counterEnabled="true"
+                    app:counterMaxLength="10">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/et_signup_id"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:maxLength="10"
+                        android:textSize="15sp" />
+                </com.google.android.material.textfield.TextInputLayout>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2.5"
+                    android:paddingBottom="10dp">
+
+                    <Button
+                        android:id="@+id/btn_idCheck"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:includeFontPadding="false"
+                        android:layout_marginLeft="10dp"
+                        android:text="중복확인"
+                        android:textColor="@color/black"
+                        android:textSize="11sp"/>
+                </LinearLayout>
+
+            </LinearLayout>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -208,7 +231,8 @@
                 android:layout_height="wrap_content"
                 android:paddingVertical="15dp"
                 android:text="회원가입"
-                android:textSize="12sp" />
+                android:textSize="12sp"
+                android:enabled="false"/>
 
             <View
                 android:layout_width="match_parent"
