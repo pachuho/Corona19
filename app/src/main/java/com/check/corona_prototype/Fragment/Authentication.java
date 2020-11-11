@@ -18,7 +18,7 @@ import android.widget.Toast;
 
 import com.check.corona_prototype.FaceDetection.FaceActivity;
 import com.check.corona_prototype.FinishActivity;
-import com.check.corona_prototype.QR.ScanQR;
+import com.check.corona_prototype.ScanQR;
 import com.check.corona_prototype.R;
 
 import static android.app.Activity.RESULT_OK;
@@ -42,7 +42,7 @@ public class Authentication extends Fragment{
         Bundle bundle = getArguments();
         get_name = bundle.getString("name");
         id = bundle.getString("id");
-        name.setText(get_name + "님 안녕하세요.");
+        name.setText(get_name + "님, 안녕하세요.");
 
         btn_picture = viewGroup.findViewById(R.id.btn_picture);
         btn_qrcode = viewGroup.findViewById(R.id.btn_qrcode);

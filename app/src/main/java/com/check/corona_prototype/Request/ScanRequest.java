@@ -1,4 +1,4 @@
-package com.check.corona_prototype.QR;
+package com.check.corona_prototype.Request;
 
 
 import com.android.volley.AuthFailureError;

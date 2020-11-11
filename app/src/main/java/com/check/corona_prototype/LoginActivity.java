@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
+import com.check.corona_prototype.Manger.ManagerActivity;
 import com.check.corona_prototype.Request.LoginRequest;
 
 import org.json.JSONException;
@@ -74,9 +75,17 @@ public class LoginActivity extends AppCompatActivity {
                                 String pwd = jsonObject.getString("pwd");
                                 String manager = jsonObject.getString("manager");
 
-//                                Toast.makeText(getApplicationContext(), "로그인 성공", Toast.LENGTH_SHORT).show();
-                                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+//                                Toast.makeText(getApplicationContext(), "매장관리자 :" + manager, Toast.LENGTH_SHORT).show();
 
+                                // 매장 관리자일 경우
+                                Intent intent;
+                                if (manager.equals("Y")) {
+                                    // 매니저 액티비티로
+                                    intent = new Intent(LoginActivity.this, ManagerActivity.class);
+                                    // 사용자 메인 액티비티로
+                                } else {
+                                    intent = new Intent(LoginActivity.this, MainActivity.class);
+                                }
                                 intent.putExtra("name", name);
                                 intent.putExtra("id", id);
                                 intent.putExtra("pwd", pwd);

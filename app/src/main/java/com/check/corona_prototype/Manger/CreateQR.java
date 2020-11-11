@@ -1,10 +1,12 @@
-package com.check.corona_prototype.QR;
+package com.check.corona_prototype.Manger;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.check.corona_prototype.R;
 import com.google.zxing.BarcodeFormat;
@@ -13,6 +15,7 @@ import com.google.zxing.common.BitMatrix;
 import com.journeyapps.barcodescanner.BarcodeEncoder;
 
 public class CreateQR extends AppCompatActivity {
+    private String store;
     private ImageView iv;
     private String text;
 
@@ -21,8 +24,15 @@ public class CreateQR extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_qr);
 
+        // 인자 전달받기
+        Intent intent = getIntent();
+        Bundle bundle = intent.getExtras();
+        store = bundle.getString("stroe");
+
+//        Toast.makeText(CreateQR.this, store, Toast.LENGTH_SHORT).show();
+
         iv = (ImageView)findViewById(R.id.qrcode);
-        text = "37.402629/126.922028/안양역";
+        text = "37.402629/126.922028/" + store;
 
 
 
