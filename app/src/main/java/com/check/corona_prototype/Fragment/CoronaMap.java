@@ -555,7 +555,7 @@ public class CoronaMap extends Fragment implements OnMapReadyCallback, ActivityC
             if (ActivityCompat.shouldShowRequestPermissionRationale(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION)) {
                 new AlertDialog.Builder(context)
                         .setTitle("위치정보")
-                        .setMessage("위치정보 접근을 허용하여 주세요.")
+                        .setMessage("위치정보 접근을 허용해 주세요.")
                         .setPositiveButton("확인", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
@@ -592,8 +592,7 @@ public class CoronaMap extends Fragment implements OnMapReadyCallback, ActivityC
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         builder.setTitle("위치 서비스 비활성화");
-        builder.setMessage("앱을 사용하기 위해서는 위치 서비스가 필요합니다.\n"
-                + "위치 설정을 수정하실래요?");
+        builder.setMessage("앱을 사용하기 위해서는 위치 서비스가 필요합니다");
         builder.setCancelable(true);
         builder.setPositiveButton("설정", new DialogInterface.OnClickListener() {
             @Override
