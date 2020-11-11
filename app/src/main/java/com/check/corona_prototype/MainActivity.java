@@ -18,7 +18,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 // 로그인 완료, 메인
 public class MainActivity extends AppCompatActivity {
-    String id, name;
+    String id, name, pwd;
 
 
     private BottomNavigationView bottomNavigationView; // 바텀 네비게이션 뷰
@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
         Bundle bundle = intent.getExtras();
         name = bundle.getString("name");
         id = bundle.getString("id");
+        pwd = bundle.getString("pwd");
         getIntent().getExtras().clear();
 
         // 바텀 네비게이션
@@ -103,6 +104,7 @@ public class MainActivity extends AppCompatActivity {
 
                 Bundle bundle2 = new Bundle();
                 bundle2.putString("id", id);
+                bundle2.putString("pwd", pwd);
                 setting.setArguments(bundle2);
                 break;
         }

@@ -46,6 +46,10 @@ public class LoginActivity extends AppCompatActivity {
                 // 관리자 모드
                 if(id.equals("root")&& pwd.equals("1q2w3e4r"))
                 {
+                    // 현재 텍스트 초기화
+                    editId.setText("");
+                    editPw.setText("");
+
 //                    Toast.makeText(getApplicationContext(), "관리자 모드 진입", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                     intent.putExtra("name", "테스터");
@@ -53,7 +57,6 @@ public class LoginActivity extends AppCompatActivity {
                     intent.putExtra("pwd", pwd);
                     intent.putExtra("manager", "N");
                     startActivity(intent);
-                    return;
                }
                 Response.Listener<String> responseListener = new Response.Listener<String>() {
                     @Override
@@ -62,6 +65,9 @@ public class LoginActivity extends AppCompatActivity {
                             JSONObject jsonObject = new JSONObject(response);
                             boolean success = jsonObject.getBoolean("success");
                             if (success) { // 로그인 성공
+                                // 현재 텍스트 초기화
+                                editId.setText("");
+                                editPw.setText("");
 
                                 String name = jsonObject.getString("name");
                                 String id = jsonObject.getString("id");
@@ -76,6 +82,7 @@ public class LoginActivity extends AppCompatActivity {
                                 intent.putExtra("pwd", pwd);
                                 intent.putExtra("manager", manager);
                                 startActivity(intent);
+
 
                             } else { // 로그인 실패
                                 Toast.makeText(getApplicationContext(), "로그인 실패", Toast.LENGTH_SHORT).show();
