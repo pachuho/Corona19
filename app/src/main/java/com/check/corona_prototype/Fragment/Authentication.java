@@ -39,6 +39,7 @@ public class Authentication extends Fragment{
         name = viewGroup.findViewById(R.id.get_name);
         context = container.getContext();
 
+
         Bundle bundle = getArguments();
         get_name = bundle.getString("name");
         id = bundle.getString("id");
@@ -95,13 +96,15 @@ public class Authentication extends Fragment{
             }
         }
         if (check_camera == 1 && check_qr == 1){
-            Toast.makeText(context, "인증 완료", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(context, "인증 완료", Toast.LENGTH_SHORT).show();
             Handler delayHandler = new Handler();
             delayHandler.postDelayed(new Runnable() {
                 @Override
                 public void run() {}
             }, 1500);
             Intent intent = new Intent(getActivity(), FinishActivity.class);
+
+
             intent.putExtra("store", store);
             startActivity(intent);
             onDestroy();

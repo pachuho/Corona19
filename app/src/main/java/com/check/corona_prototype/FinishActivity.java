@@ -7,10 +7,12 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.widget.TextView;
 
+import com.check.corona_prototype.Fragment.Authentication;
+
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class FinishActivity extends AppCompatActivity {
+public class FinishActivity extends AppCompatActivity{
     TextView TextView_move, Textview_timer, Textview_map;
     String store;
     int time = 15;
@@ -27,7 +29,7 @@ public class FinishActivity extends AppCompatActivity {
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
         store = bundle.getString("store");
-//        Textview_map.setText("위치 : " + store);
+        Textview_map.setText("매장명 : " + store);
 
         TimerTask task = new TimerTask() {
             @Override
@@ -36,6 +38,7 @@ public class FinishActivity extends AppCompatActivity {
                 time--;
                 if(time == -1){
                     finish();
+                    onDestroy();
                 }
             }
         };

@@ -71,7 +71,7 @@ public class ScanQR extends AppCompatActivity {
                             boolean success = jsonObject.getBoolean("success");
 
                             if (success) { // 스캔 성공
-                                Toast.makeText(getApplicationContext(), "스캔 성공", Toast.LENGTH_SHORT).show();
+//                                Toast.makeText(getApplicationContext(), "스캔 성공", Toast.LENGTH_SHORT).show();
 
                             } else { // 스캔 실패
                                 Toast.makeText(getApplicationContext(), "스캔 실패", Toast.LENGTH_SHORT).show();
@@ -94,7 +94,7 @@ public class ScanQR extends AppCompatActivity {
                     @Override
                     public void run() {}
                 }, 2000);
-                Toast.makeText(getApplicationContext(), "스캔 성공", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getApplicationContext(), "스캔 성공", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(this, MainActivity.class);
                 intent.putExtra("store", store);
                 setResult(RESULT_OK, intent);

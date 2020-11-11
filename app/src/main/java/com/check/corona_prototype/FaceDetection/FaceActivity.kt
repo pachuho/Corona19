@@ -71,7 +71,7 @@ class FaceActivity : AppCompatActivity() {
         }
         alertDialog.dismiss()
 
-        Toast.makeText(this@FaceActivity, "얼굴인식 완료", Toast.LENGTH_SHORT).show()
+//        Toast.makeText(this@FaceActivity, "얼굴인식 완료", Toast.LENGTH_SHORT).show()
         Handler().postDelayed({}, 2500L)
         val intent = Intent()
         setResult(Activity.RESULT_OK, intent)
