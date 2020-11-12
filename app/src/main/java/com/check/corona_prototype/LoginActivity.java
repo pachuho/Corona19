@@ -76,8 +76,6 @@ public class LoginActivity extends AppCompatActivity {
                                 String pwd = jsonObject.getString("pwd");
                                 String manager = jsonObject.getString("manager");
 
-//                                Toast.makeText(getApplicationContext(), "매장관리자 :" + manager, Toast.LENGTH_SHORT).show();
-
                                 // 매장 관리자일 경우
                                 Intent intent;
                                 if (manager.equals("Y")) {
@@ -92,7 +90,6 @@ public class LoginActivity extends AppCompatActivity {
                                 intent.putExtra("pwd", pwd);
                                 intent.putExtra("manager", manager);
                                 startActivity(intent);
-
 
                             } else { // 로그인 실패
                                 Toast.makeText(getApplicationContext(), "로그인 실패", Toast.LENGTH_SHORT).show();

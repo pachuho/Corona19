@@ -76,6 +76,7 @@ public class RegisterActivity extends AppCompatActivity {
                         try {
                             JSONObject jsonObject = new JSONObject(response);
                             boolean success = jsonObject.getBoolean("success");
+
                             if (success) { // 중복 아이디가 있을 경우
 //                                Toast.makeText(getApplicationContext(), "아이디가 있습니다.", Toast.LENGTH_SHORT).show();
                                 final AlertDialog.Builder ad_idExistence = new AlertDialog.Builder(RegisterActivity.this);
@@ -92,7 +93,6 @@ public class RegisterActivity extends AppCompatActivity {
                                 ad_idExistence.show();
 
                             } else { // 중복 아이디가 없을 경우
-
                                 // 아이디 중복 다이얼로그
                                 final AlertDialog.Builder ad_idCheck = new AlertDialog.Builder(RegisterActivity.this);
                                 ad_idCheck.setTitle("사용 가능한 아이디입니다.");
@@ -114,7 +114,6 @@ public class RegisterActivity extends AppCompatActivity {
                                     }
                                 });
                                 ad_idCheck.show();
-
 
                             }
                         } catch (JSONException e) {

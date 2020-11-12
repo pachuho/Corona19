@@ -29,7 +29,7 @@ public class FinishActivity extends AppCompatActivity{
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
         store = bundle.getString("store");
-        Textview_map.setText("매장명 : " + store);
+//        Textview_map.setText("매장명 : " + store);
 
         TimerTask task = new TimerTask() {
             @Override
