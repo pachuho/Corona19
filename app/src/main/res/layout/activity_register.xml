@@ -89,7 +89,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:includeFontPadding="false"
-                        android:layout_marginLeft="10dp"
+                        android:layout_marginLeft="5dp"
                         android:text="중복확인"
                         android:textSize="11sp"/>
                 </LinearLayout>
