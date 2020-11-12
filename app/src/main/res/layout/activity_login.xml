@@ -19,7 +19,7 @@
             android:textSize="20sp"
             android:textColor="@color/black"
             android:textStyle="bold"
-            android:text="통합 전자출입 명부"/>
+            android:text="코로나 전자출입 명부"/>
     </LinearLayout>
 
     <ScrollView

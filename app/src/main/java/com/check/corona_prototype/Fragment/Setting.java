@@ -69,7 +69,6 @@ public class Setting extends Fragment {
                 final AlertDialog.Builder nowpwd = new AlertDialog.Builder(context);
                 nowpwd.setTitle("현재 비밀번호를 입력해주세요");
                 nowpwd.setMessage("");
-                nowpwd.setCancelable(false);
                 final EditText et_nowpwd = new EditText(context);
                 nowpwd.setView(et_nowpwd);
 
@@ -84,7 +83,6 @@ public class Setting extends Fragment {
                             final AlertDialog.Builder afterpwd = new AlertDialog.Builder(context);
                             afterpwd.setTitle("변경할 비밀번호를 입력해주세요");
                             afterpwd.setMessage("");
-                            afterpwd.setCancelable(false);
                             final EditText et_afterpwd = new EditText(context);
                             afterpwd.setView(et_afterpwd);
 
@@ -155,7 +153,7 @@ public class Setting extends Fragment {
                 // 바꿀 비밀번호 다이얼로그
                 final AlertDialog.Builder idDelete = new AlertDialog.Builder(context);
                 idDelete.setTitle("정말 탈퇴하시겠습니까?");
-                idDelete.setCancelable(false);
+                idDelete.setMessage("");
 
                 idDelete.setPositiveButton("확인", new DialogInterface.OnClickListener() {
                     @Override

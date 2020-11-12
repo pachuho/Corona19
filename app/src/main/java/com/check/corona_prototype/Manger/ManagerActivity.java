@@ -96,7 +96,6 @@ public class ManagerActivity extends AppCompatActivity {
                 final AlertDialog.Builder nowpwd = new AlertDialog.Builder(ManagerActivity.this);
                 nowpwd.setTitle("현재 비밀번호를 입력해주세요");
                 nowpwd.setMessage("");
-                nowpwd.setCancelable(false);
                 final EditText et_nowpwd = new EditText(ManagerActivity.this);
                 nowpwd.setView(et_nowpwd);
 
