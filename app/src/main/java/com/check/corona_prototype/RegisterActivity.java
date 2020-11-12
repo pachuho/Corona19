@@ -1,5 +1,7 @@
 package com.check.corona_prototype;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
@@ -14,6 +16,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
+import com.check.corona_prototype.Problem.ProblemIdActivity;
+import com.check.corona_prototype.Problem.ProblemPwdActivity;
 import com.check.corona_prototype.Request.IdCheckRequest;
 import com.check.corona_prototype.Request.RegisterRequest;
 
@@ -29,8 +33,7 @@ public class RegisterActivity extends AppCompatActivity {
     private RadioGroup r_Sex, r_Manager;
     private RadioButton r_man, r_woman, r_no, r_yes;
 
-    // 성별, 매니저, 코로나 여부를 담을 변수
-    private String id, sex = "남성", manager = "N", corona = "N";
+    private String id, sex = "남성", manager = "N", corona = "N", idChecking = "N";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,7 +78,43 @@ public class RegisterActivity extends AppCompatActivity {
                             boolean success = jsonObject.getBoolean("success");
                             if (success) { // 중복 아이디가 있을 경우
 //                                Toast.makeText(getApplicationContext(), "아이디가 있습니다.", Toast.LENGTH_SHORT).show();
+                                final AlertDialog.Builder ad_idExistence = new AlertDialog.Builder(RegisterActivity.this);
+                                ad_idExistence.setTitle("이미 사용중인 아이디입니다.");
+                                ad_idExistence.setMessage("");
+                                ad_idExistence.setCancelable(false);
+
+                                ad_idExistence.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        dialog.dismiss();
+                                    }
+                                });
+                                ad_idExistence.show();
+
                             } else { // 중복 아이디가 없을 경우
+
+                                // 아이디 중복 다이얼로그
+                                final AlertDialog.Builder ad_idCheck = new AlertDialog.Builder(RegisterActivity.this);
+                                ad_idCheck.setTitle("사용 가능한 아이디입니다.");
+                                ad_idCheck.setMessage("사용하시겠습니까?");
+                                ad_idCheck.setCancelable(false);
+
+                                ad_idCheck.setPositiveButton("네", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        btn_idCheck.setEnabled(false);
+                                        editId.setEnabled(false);
+                                        idChecking = "Y";
+                                    }
+                                });
+                                ad_idCheck.setNegativeButton("아니요", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        dialog.dismiss();
+                                    }
+                                });
+                                ad_idCheck.show();
+
 
                             }
                         } catch (JSONException e) {
@@ -175,7 +214,7 @@ public class RegisterActivity extends AppCompatActivity {
             String ageInput = editAge.getText().toString().trim();
 
             btn_register.setEnabled(!nameInput.isEmpty() && !idInput.isEmpty() && !pwInput.isEmpty()
-                    && !addressInput.isEmpty() && !ageInput.isEmpty());
+                    && !addressInput.isEmpty() && !ageInput.isEmpty() && idChecking.equals("Y"));
         }
 
         @Override

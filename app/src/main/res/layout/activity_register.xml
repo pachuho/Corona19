@@ -91,7 +91,6 @@
                         android:includeFontPadding="false"
                         android:layout_marginLeft="10dp"
                         android:text="중복확인"
-                        android:textColor="@color/black"
                         android:textSize="11sp"/>
                 </LinearLayout>
 
