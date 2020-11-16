@@ -19,11 +19,17 @@
 # Development environment
 --------------
 OS : Windows 10 64bit & Unbuntu 18.04.5 LTS
+
 Server : Cafe24
+
 IDE : Android Studio 4.1
+
 Language : Java, PHP 7.4
+
 DB : Maria DB 10.2 
+
 DB Tool : HeidiSQL
+
 Etc : Putty
 
 
