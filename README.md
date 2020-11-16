@@ -15,11 +15,17 @@
 - 설정 기능 : 사용자의 계정을 수정하거나 탈퇴 등 가능
 
 
+<div>
 ![noname01](https://user-images.githubusercontent.com/52353492/99207046-4eacf180-2800-11eb-945c-caaaca9e2b31.jpg)
 ![noname02](https://user-images.githubusercontent.com/52353492/99207047-4f458800-2800-11eb-8869-6a21ae30533f.jpg)
+</div>
+<div>
 ![noname03](https://user-images.githubusercontent.com/52353492/99207050-4fde1e80-2800-11eb-85d8-6d95ae279079.jpg)
 ![noname04](https://user-images.githubusercontent.com/52353492/99207051-5076b500-2800-11eb-998a-6c0e30db5e24.jpg)
+</div>
+<div>
 ![noname05](https://user-images.githubusercontent.com/52353492/99207052-5076b500-2800-11eb-8ed9-932ab2aa61bb.jpg)
 ![noname06](https://user-images.githubusercontent.com/52353492/99207054-510f4b80-2800-11eb-9641-f6418abafa47.jpg)
+</div>
 ![noname07](https://user-images.githubusercontent.com/52353492/99207055-510f4b80-2800-11eb-8bbd-8936076362b2.jpg)
 ![noname08](https://user-images.githubusercontent.com/52353492/99207056-51a7e200-2800-11eb-9b2b-15c377c212aa.jpg)
