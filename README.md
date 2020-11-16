@@ -1,6 +1,7 @@
 # CKI-Pass (코로나 전자출입명부)
 
 해당 프로젝트는 졸업잘품으로 개발한 프로그램입니다.
+"CKI-Pass"란 "Corona"에 기존 전자출입명부인 "KI-Pass"를 합쳐서 만든 용어입니다. 
 
 주요 기능
 - 로그인 기능 : 서버에 저장된 아이디와 비밀번호와 일치된 계정을 로그인
@@ -13,6 +14,16 @@
 - 주변 확진자 확인 기능 : Google Map상에서 확진자가 다녀간 장소와 시간을 확인
 - 코로나 현황 확인 기능 : 일일 코로나 현황을 API를 통해 지역별, 날짜별 코로나 현황 확인
 - 설정 기능 : 사용자의 계정을 수정하거나 탈퇴 등 가능
+
+# Development environment
+--------------
+OS : Windows 10 64bit & Unbuntu 18.04.5 LTS
+Server : Cafe24
+IDE : Android Studio 4.1
+Language : Java, PHP 7.4
+DB : Maria DB 10.2 
+DB Tool : HeidiSQL
+Etc : Putty
 
 
 # Screenshots 
