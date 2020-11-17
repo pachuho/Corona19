@@ -43,9 +43,12 @@ Etc : Putty
 
 # Screenshots 
 --------------
+
 ![noname01](https://user-images.githubusercontent.com/52353492/99207046-4eacf180-2800-11eb-945c-caaaca9e2b31.jpg)
 ![noname02](https://user-images.githubusercontent.com/52353492/99207047-4f458800-2800-11eb-8869-6a21ae30533f.jpg)
 ![AnyConv com__로그인문제](https://user-images.githubusercontent.com/52353492/99326018-ce979200-28ba-11eb-9f04-048b252c0a35.jpg)
+
+1. User
 
 ![AnyConv com__메인](https://user-images.githubusercontent.com/52353492/99326026-d0f9ec00-28ba-11eb-9a75-06256b5dd4cf.jpg)
 ![noname03](https://user-images.githubusercontent.com/52353492/99207050-4fde1e80-2800-11eb-85d8-6d95ae279079.jpg)
@@ -58,6 +61,8 @@ Etc : Putty
 ![AnyConv com__마커클릭](https://user-images.githubusercontent.com/52353492/99326021-cfc8bf00-28ba-11eb-821c-83e345f234a9.jpg)
 ![noname07](https://user-images.githubusercontent.com/52353492/99207055-510f4b80-2800-11eb-8bbd-8936076362b2.jpg)
 ![AnyConv com__설정](https://user-images.githubusercontent.com/52353492/99326020-cf302880-28ba-11eb-9ff0-7b2e26300376.jpg)
+
+2. Manager
 
 ![AnyConv com__관리자](https://user-images.githubusercontent.com/52353492/99326028-d1928280-28ba-11eb-8a73-05eaadf75a94.jpg)
 ![AnyConv com__qr만들기](https://user-images.githubusercontent.com/52353492/99326029-d1928280-28ba-11eb-91a3-c9a306c9bcf5.jpg)
