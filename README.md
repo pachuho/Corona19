@@ -30,6 +30,14 @@ DB : Maria DB 10.2
 
 DB Tool : HeidiSQL
 
+DB Table
+
+1. member
+![KakaoTalk_20201117_011110350_01](https://user-images.githubusercontent.com/52353492/99321409-19141100-28b1-11eb-988a-b1570d598e80.png)
+
+2. location
+![KakaoTalk_20201117_011110350](https://user-images.githubusercontent.com/52353492/99321414-1b766b00-28b1-11eb-9e5a-327f7e805100.png)
+
 Etc : Putty
 
 
