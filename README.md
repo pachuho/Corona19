@@ -33,10 +33,10 @@ DB Tool : HeidiSQL
 DB Table
 
 1. member
-![KakaoTalk_20201117_011110350_01](https://user-images.githubusercontent.com/52353492/99321409-19141100-28b1-11eb-988a-b1570d598e80.png)
+![member](https://user-images.githubusercontent.com/52353492/99325092-dfdf9f00-28b8-11eb-8c6a-e90aea3097e4.PNG)
 
 2. location
-![KakaoTalk_20201117_011110350](https://user-images.githubusercontent.com/52353492/99321414-1b766b00-28b1-11eb-9e5a-327f7e805100.png)
+![location](https://user-images.githubusercontent.com/52353492/99325098-e2da8f80-28b8-11eb-9978-26ae0b4767e3.PNG)
 
 Etc : Putty
 
