@@ -10,8 +10,7 @@ import java.util.Map;
 
 public class PwdChangeRequest extends StringRequest {
     // 서버 URL
-//        final static private String URL = "http://10.0.2.2/login.php";
-    final static private String URL = "http://aa9334.cafe24.com/pwdchange.php";
+    final static private String URL = "http://52.79.235.161/pwdchange.php";
     private Map<String, String> parameters;
 
     //생성자

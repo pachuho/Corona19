@@ -10,8 +10,7 @@ import java.util.Map;
 public class IdCheckRequest extends StringRequest {
 
     // 서버 URL
-//        final static private String URL = "http://10.0.2.2/login.php";
-    final static private String URL = "http://aa9334.cafe24.com/idcheck.php";
+    final static private String URL = "http://52.79.235.161/idcheck.php";
     private Map<String, String> parameters;
 
     //생성자
