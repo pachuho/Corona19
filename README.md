@@ -20,7 +20,7 @@
 --------------
 OS : Windows 10 64bit & Unbuntu 18.04.5 LTS
 
-Server : Cafe24
+Server : Cafe24 -> AWS EC2
 
 IDE : Android Studio 4.1
 
@@ -39,6 +39,8 @@ DB Table
 ![location](https://user-images.githubusercontent.com/52353492/99325098-e2da8f80-28b8-11eb-9978-26ae0b4767e3.PNG)
 
 Etc : Putty
+
+기타사항 : 기존 cafe24에서 aws로 변경, php에 대한 주소, 비밀번호, 포트 등을 변경하였습니다.
 
 
 # Screenshots 
