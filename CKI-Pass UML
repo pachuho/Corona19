@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2021-02-06T08:25:49.927Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.104 Safari/537.36" etag="PDO-Su-i7PicqTajsPZT" version="14.2.9" type="github">
+<mxfile host="app.diagrams.net" modified="2021-02-06T10:35:09.947Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.104 Safari/537.36" etag="XEUbRH1xbrFT3CinaRY-" version="14.2.9" type="github">
   <diagram id="4k1Vsq8ZHAIlRLd2eYIW" name="Page-1">
-    <mxGraphModel dx="734" dy="601" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+    <mxGraphModel dx="1049" dy="859" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -12,49 +12,58 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="WwHAwCHMtbpowSiRS5OT-85" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=-0.004;entryY=0.134;entryDx=0;entryDy=0;entryPerimeter=0;startArrow=classic;startFill=1;startSize=6;endArrow=classic;endFill=1;fontSize=14;fontFamily=Tahoma;" parent="1" source="WwHAwCHMtbpowSiRS5OT-48" target="WwHAwCHMtbpowSiRS5OT-53" edge="1">
+        <mxCell id="WwHAwCHMtbpowSiRS5OT-85" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;startArrow=classic;startFill=1;startSize=6;endArrow=classic;endFill=1;fontSize=14;fontFamily=Tahoma;exitX=1.009;exitY=0.15;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.004;entryY=0.083;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="WwHAwCHMtbpowSiRS5OT-48" target="WwHAwCHMtbpowSiRS5OT-53" edge="1">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="305" y="110" />
-              <mxPoint x="305" y="33" />
+              <mxPoint x="250" y="115" />
+              <mxPoint x="250" y="110" />
+              <mxPoint x="280" y="110" />
+              <mxPoint x="280" y="55" />
             </Array>
+            <mxPoint x="250" y="132" as="sourcePoint" />
+            <mxPoint x="359" y="55" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="WwHAwCHMtbpowSiRS5OT-87" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=-0.004;entryY=0.12;entryDx=0;entryDy=0;entryPerimeter=0;startArrow=classic;startFill=1;startSize=6;endArrow=classic;endFill=1;fontSize=14;fontFamily=Tahoma;" parent="1" source="WwHAwCHMtbpowSiRS5OT-48" target="WwHAwCHMtbpowSiRS5OT-60" edge="1">
+        <mxCell id="WwHAwCHMtbpowSiRS5OT-87" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.008;entryY=0.121;entryDx=0;entryDy=0;entryPerimeter=0;startArrow=classic;startFill=1;startSize=6;endArrow=classic;endFill=1;fontSize=14;fontFamily=Tahoma;exitX=1.005;exitY=0.102;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" source="WwHAwCHMtbpowSiRS5OT-48" target="WwHAwCHMtbpowSiRS5OT-60" edge="1">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="305" y="110" />
-              <mxPoint x="305" y="192" />
-              <mxPoint x="359" y="192" />
+              <mxPoint x="280" y="110" />
+              <mxPoint x="280" y="264" />
             </Array>
+            <mxPoint x="250" y="132" as="sourcePoint" />
           </mxGeometry>
         </mxCell>
         <mxCell id="WwHAwCHMtbpowSiRS5OT-48" value="LoginActivity" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;dashed=0;strokeWidth=2;fontSize=14;fontFamily=Tahoma;" parent="1" vertex="1">
           <mxGeometry x="80" y="100" width="170" height="100" as="geometry" />
         </mxCell>
-        <mxCell id="WwHAwCHMtbpowSiRS5OT-49" value="+ id&#xa;+ pwd" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontFamily=Tahoma;" parent="WwHAwCHMtbpowSiRS5OT-48" vertex="1">
+        <mxCell id="WwHAwCHMtbpowSiRS5OT-49" value="+ id: String&#xa;+ pwd: String" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontFamily=Tahoma;" parent="WwHAwCHMtbpowSiRS5OT-48" vertex="1">
           <mxGeometry y="26" width="170" height="34" as="geometry" />
         </mxCell>
         <mxCell id="WwHAwCHMtbpowSiRS5OT-50" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;fontFamily=Tahoma;" parent="WwHAwCHMtbpowSiRS5OT-48" vertex="1">
           <mxGeometry y="60" width="170" height="8" as="geometry" />
         </mxCell>
-        <mxCell id="WwHAwCHMtbpowSiRS5OT-51" value="+ loginRequest(String): Map" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontFamily=Tahoma;" parent="WwHAwCHMtbpowSiRS5OT-48" vertex="1">
+        <mxCell id="WwHAwCHMtbpowSiRS5OT-51" value="+ signIn(Object): void" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontFamily=Tahoma;" parent="WwHAwCHMtbpowSiRS5OT-48" vertex="1">
           <mxGeometry y="68" width="170" height="32" as="geometry" />
         </mxCell>
-        <mxCell id="WwHAwCHMtbpowSiRS5OT-53" value="ManagerActivity" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;dashed=0;strokeWidth=2;fontSize=14;fontFamily=Tahoma;" parent="1" vertex="1">
-          <mxGeometry x="360" y="20" width="160" height="96" as="geometry" />
+        <mxCell id="SVfz2kS-4Z8GXKhYgflQ-11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;startArrow=classic;startFill=1;startSize=6;endArrow=classic;endFill=1;fontFamily=Tahoma;fontSize=14;fontColor=#FFFFFF;exitX=1;exitY=0.078;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="WwHAwCHMtbpowSiRS5OT-53">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="640" y="54" as="targetPoint" />
+          </mxGeometry>
         </mxCell>
-        <mxCell id="WwHAwCHMtbpowSiRS5OT-54" value="+ field: type" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontFamily=Tahoma;" parent="WwHAwCHMtbpowSiRS5OT-53" vertex="1">
-          <mxGeometry y="26" width="160" height="26" as="geometry" />
+        <mxCell id="WwHAwCHMtbpowSiRS5OT-53" value="ManagerActivity" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;dashed=0;strokeWidth=2;fontSize=14;fontFamily=Tahoma;" parent="1" vertex="1">
+          <mxGeometry x="313" y="42" width="170" height="158" as="geometry" />
+        </mxCell>
+        <mxCell id="WwHAwCHMtbpowSiRS5OT-54" value="+ id: String&#xa;+ pwd: String&#xa;+ name: String&#xa;+ store: String" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontFamily=Tahoma;" parent="WwHAwCHMtbpowSiRS5OT-53" vertex="1">
+          <mxGeometry y="26" width="170" height="64" as="geometry" />
         </mxCell>
         <mxCell id="WwHAwCHMtbpowSiRS5OT-55" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;fontFamily=Tahoma;" parent="WwHAwCHMtbpowSiRS5OT-53" vertex="1">
-          <mxGeometry y="52" width="160" height="8" as="geometry" />
+          <mxGeometry y="90" width="170" height="8" as="geometry" />
         </mxCell>
-        <mxCell id="WwHAwCHMtbpowSiRS5OT-56" value="+ method(type): type" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontFamily=Tahoma;" parent="WwHAwCHMtbpowSiRS5OT-53" vertex="1">
-          <mxGeometry y="60" width="160" height="36" as="geometry" />
+        <mxCell id="WwHAwCHMtbpowSiRS5OT-56" value="+ createQR(String id): void&#xa;+ changePwd(String id): void&#xa;+ withdrawal(String id): void" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontFamily=Tahoma;" parent="WwHAwCHMtbpowSiRS5OT-53" vertex="1">
+          <mxGeometry y="98" width="170" height="60" as="geometry" />
         </mxCell>
         <mxCell id="WwHAwCHMtbpowSiRS5OT-60" value="MainActivity" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;dashed=0;strokeWidth=2;fontSize=14;fontFamily=Tahoma;" parent="1" vertex="1">
-          <mxGeometry x="360" y="180" width="160" height="96" as="geometry" />
+          <mxGeometry x="313" y="252" width="160" height="96" as="geometry" />
         </mxCell>
         <mxCell id="WwHAwCHMtbpowSiRS5OT-61" value="+ field: type" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontFamily=Tahoma;" parent="WwHAwCHMtbpowSiRS5OT-60" vertex="1">
           <mxGeometry y="26" width="160" height="26" as="geometry" />
@@ -101,16 +110,16 @@
           <mxGeometry y="26" width="130" height="8" as="geometry" />
         </mxCell>
         <mxCell id="WwHAwCHMtbpowSiRS5OT-68" value="RegisterActivity" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;dashed=0;strokeWidth=2;fontSize=14;fontFamily=Tahoma;" parent="1" vertex="1">
-          <mxGeometry x="80" y="270" width="160" height="170" as="geometry" />
+          <mxGeometry x="80" y="270" width="160" height="180" as="geometry" />
         </mxCell>
-        <mxCell id="WwHAwCHMtbpowSiRS5OT-69" value="+ name: String&#xa;+ id: String&#xa;+ pwd: String&#xa;+ address: String&#xa;+ age: Int&#xa;+ sex: String" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontFamily=Tahoma;" parent="WwHAwCHMtbpowSiRS5OT-68" vertex="1">
-          <mxGeometry y="26" width="160" height="94" as="geometry" />
+        <mxCell id="WwHAwCHMtbpowSiRS5OT-69" value="+ name: String&#xa;+ id: String&#xa;+ pwd: String&#xa;+ address: String&#xa;+ age: Int&#xa;+ sex: String&#xa;+ manager" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontFamily=Tahoma;" parent="WwHAwCHMtbpowSiRS5OT-68" vertex="1">
+          <mxGeometry y="26" width="160" height="104" as="geometry" />
         </mxCell>
         <mxCell id="WwHAwCHMtbpowSiRS5OT-70" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;fontFamily=Tahoma;" parent="WwHAwCHMtbpowSiRS5OT-68" vertex="1">
-          <mxGeometry y="120" width="160" height="8" as="geometry" />
+          <mxGeometry y="130" width="160" height="8" as="geometry" />
         </mxCell>
-        <mxCell id="WwHAwCHMtbpowSiRS5OT-71" value="+ checkId(String): void&#xa;+ signIn(Object): void" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontFamily=Tahoma;" parent="WwHAwCHMtbpowSiRS5OT-68" vertex="1">
-          <mxGeometry y="128" width="160" height="42" as="geometry" />
+        <mxCell id="WwHAwCHMtbpowSiRS5OT-71" value="+ checkId(String id): void&#xa;+ signUp(Object): void" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontFamily=Tahoma;" parent="WwHAwCHMtbpowSiRS5OT-68" vertex="1">
+          <mxGeometry y="138" width="160" height="42" as="geometry" />
         </mxCell>
         <mxCell id="WwHAwCHMtbpowSiRS5OT-78" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;startSize=6;fontSize=14;startArrow=classic;startFill=1;endArrow=classic;endFill=1;fontFamily=Tahoma;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="WwHAwCHMtbpowSiRS5OT-48" target="WwHAwCHMtbpowSiRS5OT-64" edge="1">
           <mxGeometry relative="1" as="geometry">
@@ -174,7 +183,7 @@
           <mxGeometry x="80" y="492" width="120" height="30" as="geometry" />
         </mxCell>
         <mxCell id="WwHAwCHMtbpowSiRS5OT-103" value="아이디 분실" style="text;html=1;resizable=0;autosize=1;align=center;verticalAlign=middle;points=[];strokeColor=#36393d;rounded=1;shadow=0;dashed=0;startSize=30;fontFamily=Tahoma;fontSize=14;fontColor=#FFFFFF;imageWidth=24;rotation=0;spacing=6;spacingRight=0;spacingLeft=0;fillColor=#5CB500;" parent="1" vertex="1">
-          <mxGeometry x="310" y="450" width="100" height="30" as="geometry" />
+          <mxGeometry x="310" y="449" width="100" height="30" as="geometry" />
         </mxCell>
         <mxCell id="WwHAwCHMtbpowSiRS5OT-104" value="비밀번호 분실" style="text;html=1;resizable=0;autosize=1;align=center;verticalAlign=middle;points=[];strokeColor=#36393d;rounded=1;shadow=0;dashed=0;startSize=30;fontFamily=Tahoma;fontSize=14;fontColor=#FFFFFF;imageWidth=24;rotation=0;spacing=6;spacingRight=0;spacingLeft=0;fillColor=#5CB500;" parent="1" vertex="1">
           <mxGeometry x="310" y="532" width="120" height="30" as="geometry" />
@@ -182,8 +191,35 @@
         <mxCell id="WwHAwCHMtbpowSiRS5OT-105" value="기타 문제" style="text;html=1;resizable=0;autosize=1;align=center;verticalAlign=middle;points=[];strokeColor=#36393d;rounded=1;shadow=0;dashed=0;startSize=30;fontFamily=Tahoma;fontSize=14;fontColor=#FFFFFF;imageWidth=24;rotation=0;spacing=6;spacingRight=0;spacingLeft=0;fillColor=#5CB500;" parent="1" vertex="1">
           <mxGeometry x="310" y="612" width="90" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="WwHAwCHMtbpowSiRS5OT-111" value="회원 정보를 받아서&lt;br&gt;아이디 혹은 비밀번호를&lt;br&gt;다이얼로그로 반환&lt;br&gt;" style="text;html=1;resizable=0;autosize=1;align=center;verticalAlign=middle;points=[];strokeColor=#82b366;rounded=1;shadow=0;dashed=0;startSize=30;fontFamily=Tahoma;fontSize=14;imageWidth=24;rotation=0;spacing=6;spacingRight=0;spacingLeft=0;fillColor=#d5e8d4;" parent="1" vertex="1">
+        <mxCell id="WwHAwCHMtbpowSiRS5OT-111" value="회원 정보를 받아서&lt;br&gt;아이디 혹은 비밀번호를&lt;br&gt;다이얼로그로 반환함" style="text;html=1;resizable=0;autosize=1;align=center;verticalAlign=middle;points=[];strokeColor=#82b366;rounded=1;shadow=0;dashed=0;startSize=30;fontFamily=Tahoma;fontSize=14;imageWidth=24;rotation=0;spacing=6;spacingRight=0;spacingLeft=0;fillColor=#d5e8d4;fontStyle=1" parent="1" vertex="1">
           <mxGeometry x="60" y="572" width="180" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="SVfz2kS-4Z8GXKhYgflQ-3" value="관리자 화면" style="text;html=1;resizable=0;autosize=1;align=center;verticalAlign=middle;points=[];strokeColor=#36393d;rounded=1;shadow=0;dashed=0;startSize=30;fontFamily=Tahoma;fontSize=14;fontColor=#FFFFFF;imageWidth=24;rotation=0;spacing=6;spacingRight=0;spacingLeft=0;fillColor=#5CB500;" vertex="1" parent="1">
+          <mxGeometry x="313" y="4" width="100" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="SVfz2kS-4Z8GXKhYgflQ-4" value="사용자 화면" style="text;html=1;resizable=0;autosize=1;align=center;verticalAlign=middle;points=[];strokeColor=#36393d;rounded=1;shadow=0;dashed=0;startSize=30;fontFamily=Tahoma;fontSize=14;fontColor=#FFFFFF;imageWidth=24;rotation=0;spacing=6;spacingRight=0;spacingLeft=0;fillColor=#5CB500;" vertex="1" parent="1">
+          <mxGeometry x="313" y="215" width="100" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="SVfz2kS-4Z8GXKhYgflQ-6" value="CreateQR" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;dashed=0;strokeWidth=2;fontSize=14;fontFamily=Tahoma;" vertex="1" parent="1">
+          <mxGeometry x="640" y="39" width="260" height="190" as="geometry" />
+        </mxCell>
+        <mxCell id="SVfz2kS-4Z8GXKhYgflQ-7" value="+ store: String&#xa;+ locationInfo: String&#xa;+ gpsTracker: GpsTracker&#xa;+ GPS_CODE: Int&#xa;+ PERMISSIONS_CODE: Int" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontFamily=Tahoma;" vertex="1" parent="SVfz2kS-4Z8GXKhYgflQ-6">
+          <mxGeometry y="26" width="260" height="74" as="geometry" />
+        </mxCell>
+        <mxCell id="SVfz2kS-4Z8GXKhYgflQ-8" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;fontFamily=Tahoma;" vertex="1" parent="SVfz2kS-4Z8GXKhYgflQ-6">
+          <mxGeometry y="100" width="260" height="8" as="geometry" />
+        </mxCell>
+        <mxCell id="SVfz2kS-4Z8GXKhYgflQ-9" value="+ checkLocationServicesStatus(): Boolean&#xa;+ MultiFormatWriter(): void &#xa;+ onRequestPermissionsResult&#xa;+checkRunTimePermission(): void&#xa;+ showDialogForLocationServiceSetting(): void" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontFamily=Tahoma;" vertex="1" parent="SVfz2kS-4Z8GXKhYgflQ-6">
+          <mxGeometry y="108" width="260" height="82" as="geometry" />
+        </mxCell>
+        <mxCell id="SVfz2kS-4Z8GXKhYgflQ-12" value="QR코드 생성" style="text;html=1;resizable=0;autosize=1;align=center;verticalAlign=middle;points=[];strokeColor=#36393d;rounded=1;shadow=0;dashed=0;startSize=30;fontFamily=Tahoma;fontSize=14;fontColor=#FFFFFF;imageWidth=24;rotation=0;spacing=6;spacingRight=0;spacingLeft=0;fillColor=#5CB500;" vertex="1" parent="1">
+          <mxGeometry x="640" y="4" width="110" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="SVfz2kS-4Z8GXKhYgflQ-13" value="매장정보를 &lt;br&gt;QR코드로 생성,&lt;br&gt;ID를 쿼리로&lt;br&gt;비밀번호 변경,&lt;br&gt;탈퇴 기능이 있음" style="text;html=1;resizable=0;autosize=1;align=center;verticalAlign=middle;points=[];strokeColor=#82b366;rounded=1;shadow=0;dashed=0;startSize=30;fontFamily=Tahoma;fontSize=14;imageWidth=24;rotation=0;spacing=6;spacingRight=0;spacingLeft=0;fillColor=#d5e8d4;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="485" y="71" width="130" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="SVfz2kS-4Z8GXKhYgflQ-14" value="매장명과 디바이스의 &lt;br&gt;위치정보를&lt;br&gt;QR코드로 생성함&lt;br&gt;권한 및 GPS 활성화 &lt;br&gt;여부를 체크하고 &lt;br&gt;위치정보를 가져오는 &lt;br&gt;메소드를 포함함" style="text;html=1;resizable=0;autosize=1;align=center;verticalAlign=middle;points=[];strokeColor=#82b366;rounded=1;shadow=0;dashed=0;startSize=30;fontFamily=Tahoma;fontSize=14;imageWidth=24;rotation=0;spacing=6;spacingRight=0;spacingLeft=0;fillColor=#d5e8d4;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="902" y="64" width="160" height="140" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
