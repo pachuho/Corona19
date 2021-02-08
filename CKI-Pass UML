@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2021-02-08T07:45:57.067Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.104 Safari/537.36" etag="yjNw7butl5HdNNNwNGPx" version="14.2.9" type="github">
+<mxfile host="app.diagrams.net" modified="2021-02-08T07:55:37.596Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.104 Safari/537.36" etag="apdaJ_xdAakf_BmimGnq" version="14.2.9" type="github">
   <diagram id="4k1Vsq8ZHAIlRLd2eYIW" name="CKI-Pass">
-    <mxGraphModel dx="2146" dy="863" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+    <mxGraphModel dx="2003" dy="805" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -321,8 +321,8 @@
         <mxCell id="SVfz2kS-4Z8GXKhYgflQ-50" value="+ changePwd(String id): void&#xa;+ withdrawal(String id): void" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontFamily=Tahoma;" vertex="1" parent="SVfz2kS-4Z8GXKhYgflQ-47">
           <mxGeometry y="68" width="210" height="32" as="geometry" />
         </mxCell>
-        <mxCell id="SVfz2kS-4Z8GXKhYgflQ-63" value="1. 인증 : 얼굴스캔과 QR스캔으로 구성. &lt;br&gt;&amp;nbsp; 스캔 성공 여부를 리턴받아 FinishActivity로&lt;br&gt;&amp;nbsp; 이동함 (스캔 성공 시 서버에 컬럼추가)&lt;br&gt;&lt;br&gt;2. 코로나맵: 디바이스 위치정보를 받아 지도에 &lt;br&gt;&amp;nbsp; 내 위치와 근접한 확진자 정보를&lt;br&gt;&amp;nbsp; 마커로 표시하고 정보(시간, 위치명)을 표시함&lt;br&gt;&lt;br&gt;3. 웹뷰: 질병관리청에서 제공하는 웹을 띄움&lt;br&gt;4. 설정:&amp;nbsp;&lt;span&gt;ID를 쿼리로&amp;nbsp;&lt;/span&gt;&lt;span&gt;비밀번호 변경,&amp;nbsp;&lt;/span&gt;&lt;span&gt;탈퇴&lt;/span&gt;" style="text;html=1;resizable=0;autosize=1;align=left;verticalAlign=middle;points=[];strokeColor=#82b366;rounded=1;shadow=0;dashed=0;startSize=30;fontFamily=Tahoma;fontSize=14;imageWidth=24;rotation=0;spacing=6;spacingRight=0;spacingLeft=1;fillColor=#d5e8d4;fontStyle=1" vertex="1" parent="1">
-          <mxGeometry x="848" y="571" width="320" height="190" as="geometry" />
+        <mxCell id="SVfz2kS-4Z8GXKhYgflQ-63" value="1. 인증 : 얼굴스캔과 QR스캔으로 구성. &lt;br&gt;&amp;nbsp; 스캔 성공 여부를 리턴받아 FinishActivity로&lt;br&gt;&amp;nbsp; 이동함 (스캔 성공 시 서버에 컬럼추가)&lt;br&gt;&lt;br&gt;2. 코로나맵: 디바이스 위치정보를 받아 지도에 &lt;br&gt;&amp;nbsp; 내 위치와 근접한 확진자 정보를&lt;br&gt;&amp;nbsp; 마커로 표시하고 정보(시간, 위치명)을 표시함&lt;br&gt;&lt;br&gt;3. 웹뷰: 질병관리청에서 제공하는 웹을 띄움&lt;br&gt;&lt;br&gt;4. 설정:&amp;nbsp;&lt;span&gt;ID를 쿼리로&amp;nbsp;&lt;/span&gt;&lt;span&gt;비밀번호 변경,&amp;nbsp;&lt;/span&gt;&lt;span&gt;탈퇴&lt;/span&gt;" style="text;html=1;resizable=0;autosize=1;align=left;verticalAlign=middle;points=[];strokeColor=#82b366;rounded=1;shadow=0;dashed=0;startSize=30;fontFamily=Tahoma;fontSize=14;imageWidth=24;rotation=0;spacing=6;spacingRight=0;spacingLeft=1;fillColor=#d5e8d4;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="846" y="572" width="320" height="200" as="geometry" />
         </mxCell>
         <mxCell id="SVfz2kS-4Z8GXKhYgflQ-65" value="FinishActivity" style="swimlane;fontStyle=1;align=center;verticalAlign=top;childLayout=stackLayout;horizontal=1;startSize=26;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;rounded=0;shadow=0;dashed=0;strokeWidth=2;fontSize=14;fontFamily=Tahoma;" vertex="1" collapsed="1" parent="1">
           <mxGeometry x="909" y="533" width="250" height="26" as="geometry">
