@@ -11,8 +11,7 @@ import java.util.Map;
 public class ScanRequest extends StringRequest{
 
     // 서버 URL
-//    final static private String URL = "http://10.0.2.2/scan.php";
-    final static private String URL = "http://aa9334.cafe24.com/scan.php";
+    final static private String URL = "http://52.79.235.161/scan.php";
     private Map<String, String> parameters;
 
     //생성자

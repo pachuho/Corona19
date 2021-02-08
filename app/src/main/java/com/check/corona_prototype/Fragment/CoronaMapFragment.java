@@ -245,7 +245,7 @@ public class CoronaMapFragment extends Fragment implements OnMapReadyCallback, A
                 mCurrentLocatiion = location;
             }
             GetData task = new GetData();
-            task.execute( "http://aa9334.cafe24.com/location.php", "");
+            task.execute( "http://52.79.235.161/location.php", "");
         }
 
     };
