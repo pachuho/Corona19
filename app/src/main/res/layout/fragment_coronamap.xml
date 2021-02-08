@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/layout_main"
-    tools:context=".Fragment.CoronaMap">
+    tools:context=".Fragment.CoronaMapFragment">
 
 
     <com.google.android.gms.maps.MapView

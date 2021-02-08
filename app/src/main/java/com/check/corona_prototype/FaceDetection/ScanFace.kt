@@ -17,7 +17,7 @@ import com.google.firebase.ml.vision.face.FirebaseVisionFace
 import com.google.firebase.ml.vision.face.FirebaseVisionFaceDetectorOptions
 import kotlinx.android.synthetic.main.activity_face.*
 
-class FaceActivity : AppCompatActivity() {
+class ScanFace : AppCompatActivity() {
     lateinit var alertDialog: AlertDialog
 
     override fun onCreate(savedInstanceState: Bundle?) {

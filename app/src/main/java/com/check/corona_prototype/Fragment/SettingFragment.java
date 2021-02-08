@@ -32,7 +32,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 
-public class Setting extends Fragment {
+public class SettingFragment extends Fragment {
     ViewGroup viewGroup;
     String id, pwd;
     LinearLayout ll_pwchange, ll_idleave;

@@ -10,10 +10,10 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.check.corona_prototype.Fragment.Authentication;
-import com.check.corona_prototype.Fragment.CoronaMap;
-import com.check.corona_prototype.Fragment.WebView;
-import com.check.corona_prototype.Fragment.Setting;
+import com.check.corona_prototype.Fragment.AuthenticationFragment;
+import com.check.corona_prototype.Fragment.CoronaMapFragment;
+import com.check.corona_prototype.Fragment.WebViewFragment;
+import com.check.corona_prototype.Fragment.SettingFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 // 로그인 완료, 메인
@@ -24,11 +24,10 @@ public class MainActivity extends AppCompatActivity {
     private BottomNavigationView bottomNavigationView; // 바텀 네비게이션 뷰
     private FragmentManager fm;
     private FragmentTransaction ft;
-    private FragmentManager fragmentManager = getSupportFragmentManager();
-    private Authentication fragment1 = new Authentication();
-    private CoronaMap location = new CoronaMap();
-    private WebView webView = new WebView();
-    private Setting setting = new Setting();
+    private AuthenticationFragment authentication = new AuthenticationFragment();
+    private CoronaMapFragment location = new CoronaMapFragment();
+    private WebViewFragment webView = new WebViewFragment();
+    private SettingFragment setting = new SettingFragment();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,39 +52,39 @@ public class MainActivity extends AppCompatActivity {
                 switch (menuItem.getItemId())
                 {
                     case R.id.navigation_menu1:
-                        setFrag(0);
+                        setFragment(0);
                         break;
                     case R.id.navigation_menu2:
-                        setFrag(1);
+                        setFragment(1);
                         break;
                     case R.id.navigation_menu3:
-                        setFrag(2);
+                        setFragment(2);
                         break;
                     case R.id.navigation_menu4:
-                        setFrag(3);
+                        setFragment(3);
                         break;
                 }
                 return true;
             }
         });
-        setFrag(0); // 초기 프래그먼트 지정
+        setFragment(0); // 초기 프래그먼트 지정
     }
 
     // 프레그먼트 교체
-    private void setFrag(int n)
+    private void setFragment(int select)
     {
         fm = getSupportFragmentManager();
         ft= fm.beginTransaction();
-        switch (n)
+        switch (select)
         {
             case 0:
-                ft.replace(R.id.container, fragment1);
+                ft.replace(R.id.container, authentication);
                 ft.commit();
 
                 Bundle bundle = new Bundle();
                 bundle.putString("name", name);
                 bundle.putString("id", id);
-                fragment1.setArguments(bundle);
+                authentication.setArguments(bundle);
                 break;
 
             case 1:

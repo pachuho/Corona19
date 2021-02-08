@@ -14,9 +14,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.check.corona_prototype.FaceDetection.FaceActivity;
+import com.check.corona_prototype.FaceDetection.ScanFace;
 import com.check.corona_prototype.FinishActivity;
 import com.check.corona_prototype.ScanQR;
 import com.check.corona_prototype.R;
@@ -24,7 +23,7 @@ import com.check.corona_prototype.R;
 import static android.app.Activity.RESULT_OK;
 
 
-public class Authentication extends Fragment{
+public class AuthenticationFragment extends Fragment{
     ViewGroup viewGroup;
     TextView name;
     String get_name, id, store;
@@ -54,7 +53,7 @@ public class Authentication extends Fragment{
         btn_picture.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), FaceActivity.class);
+                Intent intent = new Intent(getActivity(), ScanFace.class);
                 intent.putExtra("id", id);
                 startActivityForResult(intent, 1);
             }
@@ -93,16 +92,16 @@ public class Authentication extends Fragment{
 //                Bundle bundle = intent.getExtras();
 //                store = bundle.getString("store");
 //                Toast.makeText(getApplicationContext(), "Store : " + store, Toast.LENGTH_SHORT).show();
-            }
         }
+    }
         if (check_camera == 1 && check_qr == 1){
 //            Toast.makeText(context, "인증 완료", Toast.LENGTH_SHORT).show();
-            Handler delayHandler = new Handler();
-            delayHandler.postDelayed(new Runnable() {
-                @Override
-                public void run() {}
-            }, 1500);
-            Intent intent = new Intent(getActivity(), FinishActivity.class);
+        Handler delayHandler = new Handler();
+        delayHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {}
+        }, 1500);
+        Intent intent = new Intent(getActivity(), FinishActivity.class);
 
 
             intent.putExtra("store", store);

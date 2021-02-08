@@ -14,7 +14,7 @@ import android.webkit.WebViewClient;
 import com.check.corona_prototype.R;
 
 
-public class WebView extends Fragment {
+public class WebViewFragment extends Fragment {
     ViewGroup viewGroup;
     android.webkit.WebView mWebView;
     WebSettings mWebSettings;

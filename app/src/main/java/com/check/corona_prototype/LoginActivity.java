@@ -25,6 +25,7 @@ import org.json.JSONObject;
 public class LoginActivity extends AppCompatActivity {
     private EditText editId, editPw;
     private Button btn_signIn;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,66 +45,8 @@ public class LoginActivity extends AppCompatActivity {
                 String id = editId.getText().toString();
                 String pwd = editPw.getText().toString();
 
-
-                // 관리자 모드
-                if(id.equals("root")&& pwd.equals("1q2w3e4r"))
-                {
-                    // 현재 텍스트 초기화
-                    editId.setText("");
-                    editPw.setText("");
-
-//                    Toast.makeText(getApplicationContext(), "관리자 모드 진입", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                    intent.putExtra("name", "테스터");
-                    intent.putExtra("id", id);
-                    intent.putExtra("pwd", pwd);
-                    intent.putExtra("manager", "N");
-                    startActivity(intent);
-               }
-                Response.Listener<String> responseListener = new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        try {
-                            JSONObject jsonObject = new JSONObject(response);
-                            boolean success = jsonObject.getBoolean("success");
-                            if (success) { // 로그인 성공
-                                // 현재 텍스트 초기화
-                                editId.setText("");
-                                editPw.setText("");
-
-                                String name = jsonObject.getString("name");
-                                String id = jsonObject.getString("id");
-                                String pwd = jsonObject.getString("pwd");
-                                String manager = jsonObject.getString("manager");
-
-                                // 매장 관리자일 경우
-                                Intent intent;
-                                if (manager.equals("Y")) {
-                                    // 매니저 액티비티로
-                                    intent = new Intent(LoginActivity.this, ManagerActivity.class);
-                                    // 사용자 메인 액티비티로
-                                } else {
-                                    intent = new Intent(LoginActivity.this, MainActivity.class);
-                                }
-                                intent.putExtra("name", name);
-                                intent.putExtra("id", id);
-                                intent.putExtra("pwd", pwd);
-                                intent.putExtra("manager", manager);
-                                startActivity(intent);
-
-                            } else { // 로그인 실패
-                                Toast.makeText(getApplicationContext(), "로그인 실패", Toast.LENGTH_SHORT).show();
-                            }
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                            Toast.makeText(getApplicationContext(), "로그인 실패, 통신이상", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                };
-            LoginRequest loginRequest = new LoginRequest(id, pwd, responseListener);
-            RequestQueue queue = Volley.newRequestQueue(LoginActivity.this);
-            queue.add(loginRequest);
-
+                // 로그인
+                signIn(id, pwd);
             }
         });
 
@@ -125,6 +68,69 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
+    private void signIn(String id, String pwd){
+        // 관리자 모드
+        if(id.equals("root")&& pwd.equals("1q2w3e4r"))
+        {
+            // 현재 텍스트 초기화
+            editId.setText("");
+            editPw.setText("");
+
+//                    Toast.makeText(getApplicationContext(), "테스트 모드 진입", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+            intent.putExtra("name", "테스터");
+            intent.putExtra("id", id);
+            intent.putExtra("pwd", pwd);
+            intent.putExtra("manager", "N");
+            startActivity(intent);
+        }
+        Response.Listener<String> responseListener = new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject jsonObject = new JSONObject(response);
+                    boolean success = jsonObject.getBoolean("success");
+                    if (success) { // 로그인 성공
+                        // 현재 텍스트 초기화
+                        editId.setText("");
+                        editPw.setText("");
+
+                        String name = jsonObject.getString("name");
+                        String id = jsonObject.getString("id");
+                        String pwd = jsonObject.getString("pwd");
+                        String manager = jsonObject.getString("manager");
+
+                        // 매장 관리자일 경우
+                        Intent intent;
+                        if (manager.equals("Y")) {
+                            // 매니저 액티비티로
+                            intent = new Intent(LoginActivity.this, ManagerActivity.class);
+                            // 사용자 메인 액티비티로
+                        } else {
+                            intent = new Intent(LoginActivity.this, MainActivity.class);
+                        }
+                        intent.putExtra("name", name);
+                        intent.putExtra("id", id);
+                        intent.putExtra("pwd", pwd);
+                        intent.putExtra("manager", manager);
+                        startActivity(intent);
+
+                    } else { // 로그인 실패
+                        Toast.makeText(getApplicationContext(), "로그인 실패", Toast.LENGTH_SHORT).show();
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    Toast.makeText(getApplicationContext(), "로그인 실패, 통신이상", Toast.LENGTH_SHORT).show();
+                }
+            }
+        };
+        LoginRequest loginRequest = new LoginRequest(id, pwd, responseListener);
+        RequestQueue queue = Volley.newRequestQueue(LoginActivity.this);
+        queue.add(loginRequest);
+    }
+
+
+
     private TextWatcher loginTextWatcher = new TextWatcher() {
         @Override
         public void beforeTextChanged(CharSequence s, int start, int count, int after) {

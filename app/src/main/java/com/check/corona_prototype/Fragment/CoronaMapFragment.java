@@ -65,7 +65,7 @@ import java.util.Locale;
 import java.util.Objects;
 
 
-public class CoronaMap extends Fragment implements OnMapReadyCallback, ActivityCompat.OnRequestPermissionsResultCallback {
+public class CoronaMapFragment extends Fragment implements OnMapReadyCallback, ActivityCompat.OnRequestPermissionsResultCallback {
 
     private com.google.android.gms.maps.GoogleMap mMap;
     private Marker currentMarker = null;

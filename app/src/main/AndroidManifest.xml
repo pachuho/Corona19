@@ -46,7 +46,7 @@
         <activity android:name=".Manger.CreateQR" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".MainActivity" />
-        <activity android:name=".FaceDetection.FaceActivity" />
+        <activity android:name=".FaceDetection.ScanFace" />
         <activity android:name=".FinishActivity" />
     </application>
 

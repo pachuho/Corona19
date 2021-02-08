@@ -70,62 +70,7 @@ public class RegisterActivity extends AppCompatActivity {
                 {
                     Toast.makeText(getApplicationContext(), "아이디를 입력하세요", Toast.LENGTH_SHORT).show();
                 }
-                Response.Listener<String> responseListener = new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        try {
-                            JSONObject jsonObject = new JSONObject(response);
-                            boolean success = jsonObject.getBoolean("success");
-
-                            if (success) { // 중복 아이디가 있을 경우
-//                                Toast.makeText(getApplicationContext(), "아이디가 있습니다.", Toast.LENGTH_SHORT).show();
-                                final AlertDialog.Builder ad_idExistence = new AlertDialog.Builder(RegisterActivity.this);
-                                ad_idExistence.setTitle("이미 사용중인 아이디입니다.");
-                                ad_idExistence.setMessage("");
-                                ad_idExistence.setCancelable(false);
-
-                                ad_idExistence.setPositiveButton("확인", new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int which) {
-                                        dialog.dismiss();
-                                    }
-                                });
-                                ad_idExistence.show();
-
-                            } else { // 중복 아이디가 없을 경우
-                                // 아이디 중복 다이얼로그
-                                final AlertDialog.Builder ad_idCheck = new AlertDialog.Builder(RegisterActivity.this);
-                                ad_idCheck.setTitle("사용 가능한 아이디입니다.");
-                                ad_idCheck.setMessage("사용하시겠습니까?");
-                                ad_idCheck.setCancelable(false);
-
-                                ad_idCheck.setPositiveButton("네", new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int which) {
-                                        btn_idCheck.setEnabled(false);
-                                        editId.setEnabled(false);
-                                        idChecking = "Y";
-                                    }
-                                });
-                                ad_idCheck.setNegativeButton("아니요", new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int which) {
-                                        dialog.dismiss();
-                                    }
-                                });
-                                ad_idCheck.show();
-
-                            }
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                            Toast.makeText(getApplicationContext(), "중복확인 실패, 통신 이상", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                };
-                // 서버로 요청
-                IdCheckRequest idCheckRequest = new IdCheckRequest(id, responseListener);
-                RequestQueue queue = Volley.newRequestQueue(RegisterActivity.this);
-                queue.add(idCheckRequest);
+                checkId(id);
             }
         });
 
@@ -171,33 +116,96 @@ public class RegisterActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "회원정보를 입력하세요", Toast.LENGTH_SHORT).show();
                     return;
                 }
+                signUp(name, id, pwd, address, age, sex);
 
-                Response.Listener<String> responseListener = new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        try {
-                            JSONObject jsonObject = new JSONObject(response);
-                            boolean success = jsonObject.getBoolean("success");
-                            if (success) { // 회원가입 성공
-                                Toast.makeText(getApplicationContext(), "회원가입 성공", Toast.LENGTH_SHORT).show();
-                                Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
-                                startActivity(intent);
-                            } else { // 회원가입 실패
-                                Toast.makeText(getApplicationContext(), "회원가입 실패", Toast.LENGTH_SHORT).show();
-                            }
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                            Toast.makeText(getApplicationContext(), "회원가입 실패, 통신 이상", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                };
-                // 서버로 요청
-                RegisterRequest registerRequest = new RegisterRequest(name, id, pwd, address, age, sex, manager, corona, responseListener);
-                RequestQueue queue = Volley.newRequestQueue(RegisterActivity.this);
-                queue.add(registerRequest);
             }
         });
     }
+    private void checkId(String id) {
+        Response.Listener<String> responseListener = new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject jsonObject = new JSONObject(response);
+                    boolean success = jsonObject.getBoolean("success");
+
+                    if (success) { // 중복 아이디가 있을 경우
+//                                Toast.makeText(getApplicationContext(), "아이디가 있습니다.", Toast.LENGTH_SHORT).show();
+                        final AlertDialog.Builder ad_idExistence = new AlertDialog.Builder(RegisterActivity.this);
+                        ad_idExistence.setTitle("이미 사용중인 아이디입니다.");
+                        ad_idExistence.setMessage("");
+                        ad_idExistence.setCancelable(false);
+
+                        ad_idExistence.setPositiveButton("확인", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        });
+                        ad_idExistence.show();
+
+                    } else { // 중복 아이디가 없을 경우
+                        // 아이디 중복 다이얼로그
+                        final AlertDialog.Builder ad_idCheck = new AlertDialog.Builder(RegisterActivity.this);
+                        ad_idCheck.setTitle("사용 가능한 아이디입니다.");
+                        ad_idCheck.setMessage("사용하시겠습니까?");
+                        ad_idCheck.setCancelable(false);
+
+                        ad_idCheck.setPositiveButton("네", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                btn_idCheck.setEnabled(false);
+                                editId.setEnabled(false);
+                                idChecking = "Y";
+                            }
+                        });
+                        ad_idCheck.setNegativeButton("아니요", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        });
+                        ad_idCheck.show();
+
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    Toast.makeText(getApplicationContext(), "중복확인 실패, 통신 이상", Toast.LENGTH_SHORT).show();
+                }
+            }
+        };
+        // 서버로 요청
+        IdCheckRequest idCheckRequest = new IdCheckRequest(id, responseListener);
+        RequestQueue queue = Volley.newRequestQueue(RegisterActivity.this);
+        queue.add(idCheckRequest);
+    }
+
+    private void signUp(String name, String id, String pwd, String address, Integer age, String sex) {
+        Response.Listener<String> responseListener = new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject jsonObject = new JSONObject(response);
+                    boolean success = jsonObject.getBoolean("success");
+                    if (success) { // 회원가입 성공
+                        Toast.makeText(getApplicationContext(), "회원가입 성공", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+                        startActivity(intent);
+                    } else { // 회원가입 실패
+                        Toast.makeText(getApplicationContext(), "회원가입 실패", Toast.LENGTH_SHORT).show();
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    Toast.makeText(getApplicationContext(), "회원가입 실패, 통신 이상", Toast.LENGTH_SHORT).show();
+                }
+            }
+        };
+        // 서버로 요청
+        RegisterRequest registerRequest = new RegisterRequest(name, id, pwd, address, age, sex, manager, corona, responseListener);
+        RequestQueue queue = Volley.newRequestQueue(RegisterActivity.this);
+        queue.add(registerRequest);
+    }
+
     private TextWatcher registerTextWatcher = new TextWatcher() {
         @Override
         public void beforeTextChanged(CharSequence s, int start, int count, int after) {

@@ -38,23 +38,15 @@ public class CreateQR extends AppCompatActivity {
     private String store;
     private ImageView iv;
     private TextView tv_storeName;
-    private String text;
+    private String locationInfo;
 
     // 위치 찾기
     private GpsTracker gpsTracker;
     private static final int GPS_ENABLE_REQUEST_CODE = 2001;
     private static final int PERMISSIONS_REQUEST_CODE = 100;
-    boolean needRequest = false;
-
 
     // 앱을 실행하기 위해 필요한 퍼미션을 정의합니다.
     String[] REQUIRED_PERMISSIONS = {Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION};  // 외부 저장소
-    android.location.Location mCurrentLocatiion;
-    LatLng currentPosition;
-
-    private FusedLocationProviderClient mFusedLocationClient;
-    private LocationRequest locationRequest;
-    private android.location.Location location;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,7 +78,7 @@ public class CreateQR extends AppCompatActivity {
         double latitude = gpsTracker.getLatitude();
         double longitude = gpsTracker.getLongitude();
 
-        text = latitude + "/" + longitude + "/" + store;
+        locationInfo = latitude + "/" + longitude + "/" + store;
 
 
 //        Toast.makeText(CreateQR.this, text, Toast.LENGTH_LONG).show();
@@ -94,8 +86,8 @@ public class CreateQR extends AppCompatActivity {
         // qr코드 이미지 생성
         MultiFormatWriter multiFormatWriter = new MultiFormatWriter();
         try{
-            text = new String(text.getBytes("UTF-8"), "ISO-8859-1");
-            BitMatrix bitMatrix = multiFormatWriter.encode(text, BarcodeFormat.QR_CODE,200,200);
+            locationInfo = new String(locationInfo.getBytes("UTF-8"), "ISO-8859-1");
+            BitMatrix bitMatrix = multiFormatWriter.encode(locationInfo, BarcodeFormat.QR_CODE,200,200);
             BarcodeEncoder barcodeEncoder = new BarcodeEncoder();
             Bitmap bitmap = barcodeEncoder.createBitmap(bitMatrix);
             iv.setImageBitmap(bitmap);
@@ -104,6 +96,7 @@ public class CreateQR extends AppCompatActivity {
         }
     }
 
+    // 퍼미션 허용 여부 체크 함수 : 미 체크 시 퍼미션 에러 메시지를 띄우고 작업을 종료
     @Override
     public void onRequestPermissionsResult(int permsRequestCode,
                                            @NonNull String[] permissions,
@@ -112,12 +105,9 @@ public class CreateQR extends AppCompatActivity {
         if ( permsRequestCode == PERMISSIONS_REQUEST_CODE && grandResults.length == REQUIRED_PERMISSIONS.length) {
 
             // 요청 코드가 PERMISSIONS_REQUEST_CODE 이고, 요청한 퍼미션 개수만큼 수신되었다면
-
             boolean check_result = true;
 
-
             // 모든 퍼미션을 허용했는지 체크합니다.
-
             for (int result : grandResults) {
                 if (result != PackageManager.PERMISSION_GRANTED) {
                     check_result = false;
@@ -133,18 +123,13 @@ public class CreateQR extends AppCompatActivity {
             }
             else {
                 // 거부한 퍼미션이 있다면 앱을 사용할 수 없는 이유를 설명해주고 앱을 종료합니다.2 가지 경우가 있습니다.
-
                 if (ActivityCompat.shouldShowRequestPermissionRationale(this, REQUIRED_PERMISSIONS[0])
                         || ActivityCompat.shouldShowRequestPermissionRationale(this, REQUIRED_PERMISSIONS[1])) {
-
                     Toast.makeText(CreateQR.this, "퍼미션이 거부되었습니다. 앱을 다시 실행하여 퍼미션을 허용해주세요.", Toast.LENGTH_LONG).show();
                     finish();
-
-
                 }else {
-
                     Toast.makeText(CreateQR.this, "퍼미션이 거부되었습니다. 설정(앱 정보)에서 퍼미션을 허용해야 합니다. ", Toast.LENGTH_LONG).show();
-
+                    finish();
                 }
             }
 
@@ -194,44 +179,6 @@ public class CreateQR extends AppCompatActivity {
         }
 
     }
-
-
-    public String getCurrentAddress( double latitude, double longitude) {
-
-        //지오코더... GPS를 주소로 변환
-        Geocoder geocoder = new Geocoder(this, Locale.getDefault());
-
-        List<Address> addresses;
-
-        try {
-
-            addresses = geocoder.getFromLocation(
-                    latitude,
-                    longitude,
-                    7);
-        } catch (IOException ioException) {
-            //네트워크 문제
-            Toast.makeText(this, "지오코더 서비스 사용불가", Toast.LENGTH_LONG).show();
-            return "지오코더 서비스 사용불가";
-        } catch (IllegalArgumentException illegalArgumentException) {
-            Toast.makeText(this, "잘못된 GPS 좌표", Toast.LENGTH_LONG).show();
-            return "잘못된 GPS 좌표";
-
-        }
-
-
-
-        if (addresses == null || addresses.size() == 0) {
-            Toast.makeText(this, "주소 미발견", Toast.LENGTH_LONG).show();
-            return "주소 미발견";
-
-        }
-
-        Address address = addresses.get(0);
-        return address.getAddressLine(0).toString()+"\n";
-
-    }
-
 
     //여기부터는 GPS 활성화를 위한 메소드들
     private void showDialogForLocationServiceSetting() {
