@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2021-02-08T07:55:37.596Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.104 Safari/537.36" etag="apdaJ_xdAakf_BmimGnq" version="14.2.9" type="github">
+<mxfile host="app.diagrams.net" modified="2021-02-08T08:28:23.531Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.104 Safari/537.36" etag="zVD-_myhEQK7gKLbr7g1" version="14.2.9" type="github">
   <diagram id="4k1Vsq8ZHAIlRLd2eYIW" name="CKI-Pass">
-    <mxGraphModel dx="2003" dy="805" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+    <mxGraphModel dx="432" dy="354" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -217,7 +217,7 @@
         <mxCell id="SVfz2kS-4Z8GXKhYgflQ-8" value="" style="line;strokeWidth=1;fillColor=none;align=left;verticalAlign=middle;spacingTop=-1;spacingLeft=3;spacingRight=3;rotatable=0;labelPosition=right;points=[];portConstraint=eastwest;fontFamily=Tahoma;" vertex="1" parent="SVfz2kS-4Z8GXKhYgflQ-6">
           <mxGeometry y="100" width="260" height="8" as="geometry" />
         </mxCell>
-        <mxCell id="SVfz2kS-4Z8GXKhYgflQ-9" value="+ checkLocationServicesStatus(): Boolean&#xa;+ MultiFormatWriter(): void &#xa;+ onRequestPermissionsResult&#xa;+checkRunTimePermission(): void&#xa;+ showDialogForLocationServiceSetting(): void" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontFamily=Tahoma;" vertex="1" parent="SVfz2kS-4Z8GXKhYgflQ-6">
+        <mxCell id="SVfz2kS-4Z8GXKhYgflQ-9" value="+ checkLocationServicesStatus(): Boolean&#xa;+ onRequestPermissionsResult&#xa;+ checkRunTimePermission(): void&#xa;+ showDialogForLocationServiceSetting(): void" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontFamily=Tahoma;" vertex="1" parent="SVfz2kS-4Z8GXKhYgflQ-6">
           <mxGeometry y="108" width="260" height="82" as="geometry" />
         </mxCell>
         <mxCell id="SVfz2kS-4Z8GXKhYgflQ-12" value="QR코드 생성" style="text;html=1;resizable=0;autosize=1;align=center;verticalAlign=middle;points=[];strokeColor=#36393d;rounded=1;shadow=0;dashed=0;startSize=30;fontFamily=Tahoma;fontSize=14;fontColor=#FFFFFF;imageWidth=24;rotation=0;spacing=6;spacingRight=0;spacingLeft=0;fillColor=#5CB500;" vertex="1" parent="1">
