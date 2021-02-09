@@ -42,6 +42,10 @@ Etc : Putty
 
 기타사항 : 기존 cafe24에서 aws로 변경, php에 대한 주소, 비밀번호, 포트 등을 변경하였습니다.
 
+# User System Diagram
+![image01](https://user-images.githubusercontent.com/52353492/107393502-39fda280-6b3e-11eb-95b4-08bf5b25ea44.png)
+--------------
+
 # UML
 ![UML](https://user-images.githubusercontent.com/52353492/107230498-81aefc00-6a62-11eb-9448-dc3e426e958b.png)
 --------------
